@@ -1,15 +1,31 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 
-import UserContext from "../User/User";
 import ShowCard from "../ShowCard/ShowCard.js";
 
-function ShowsWrapper() {
-  const showsData = useContext(UserContext);
+function ShowsWrapper(props) {
+  const { trackedShows } = props;
+  const [shows, setShows] = useState([]);
+
+  useEffect(() => {
+    const fetchShowData = async () => {
+      let showsData = [];
+
+      await Promise.all(
+        trackedShows.map(async (showId) => {
+          let response = await fetch(`http://api.tvmaze.com/shows/${showId}`);
+          let data = await response.json();
+          showsData.push(data);
+        })
+      );
+      setShows(showsData);
+    };
+    fetchShowData();
+  }, [trackedShows]);
 
   return (
     <div>
-      {Object.values(showsData).map((show) => {
-        return <ShowCard key={show.name} {...show}></ShowCard>;
+      {shows.map((show) => {
+        return <ShowCard key={show.id} show={show}></ShowCard>;
       })}
     </div>
   );
