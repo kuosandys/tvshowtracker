@@ -1,22 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import UserContext from "../User/User";
+// import UserContext from "../User/User";
 
 function WatchedButton(props) {
-  const { showId, episodeId, watched } = props;
-  const { setUser } = useContext(UserContext);
+  const { showId, episodeId, watched, setShowsData } = props;
+  // const { setUser } = useContext(UserContext);
 
   function handleClick() {
-    const newObj = {
-      [showId]: {
-        episodes: {
-          [episodeId]: {
-            watched: !watched,
-          },
-        },
-      },
-    };
-    setUser(newObj);
+    const newObj = { showId, episodeId, watched: !watched };
+    setShowsData(newObj);
   }
 
   return (

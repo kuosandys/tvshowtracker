@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import ShowCard from "../ShowCard/ShowCard.js";
 
 function ShowsWrapper(props) {

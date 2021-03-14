@@ -1,12 +1,12 @@
 import React from "react";
 
 function EpisodeDetails(props) {
-  const { imgUrl, airdate, airtime, summary } = props;
+  const { episode } = props;
   return (
     <div>
-      <img src={imgUrl} alt="Promotional Poster" />
-      <h4>{`Aired ${airdate} ${airtime}`}</h4>
-      <p>{summary}</p>
+      <img src={episode.image.medium} alt="Promotional Poster" />
+      <h4>{`Aired ${episode.airdate} ${episode.airtime}`}</h4>
+      <p>{episode.summary}</p>
     </div>
   );
 }
