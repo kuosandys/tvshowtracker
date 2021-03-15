@@ -1,5 +1,5 @@
 // import "./App.css";
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import { Route, Switch, Link } from "react-router-dom";
 
 import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
@@ -9,11 +9,22 @@ import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
 // test data - get from localstorage eventually
 const sampleShowIds = [1, 2];
 
+const showsReducer = (state, action) => {
+  if (action.type === "add") {
+    return [...state, action.show];
+  } else if (action.type === "remove") {
+    let newState = state.filter((item) => item !== action.show);
+    return [...newState];
+  }
+};
+
 function App() {
-  const [trackedShows, setTrackedShows] = useState(sampleShowIds);
+  const [trackedShows, setTrackedShows] = useReducer(
+    showsReducer,
+    sampleShowIds
+  );
 
   return (
-    // <ShowsContext.Provider value={{trackedShows, setTrackedShows}}>
     <div className="App">
       <ul>
         <li>
@@ -30,14 +41,13 @@ function App() {
         {trackedShows.map((showId) => {
           return (
             <Route exact path={`/shows/:showId`} key={showId}>
-              <ShowDetails showId={showId} />
-              <EpisodesWrapper showId={showId} />
+              <ShowDetails />
+              <EpisodesWrapper />
             </Route>
           );
         })}
       </Switch>
     </div>
-    // </ShowsContext.Provider>
   );
 }
 

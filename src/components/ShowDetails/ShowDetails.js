@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 // Display detailed information for a show
-function ShowDetails(props) {
+function ShowDetails() {
   const { showId } = useParams();
 
   const [show, setShow] = useState({});
