@@ -1,15 +1,9 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import WatchedButton from "../WatchedButton/WatchedButton";
-
-// dummy data - set local storage when adding tv shows eventually
-const sampleEpisodeIds = [
-  { show: 1, episodes: [1, 2] },
-  { show: 2, episodes: [28, 29] },
-];
-localStorage.setItem("watchedEpisodesData", JSON.stringify(sampleEpisodeIds));
+import { useLocalEpisodesState } from "../../helpers/helpers";
 
 // Reducer for updating watched episodes array
 const episodesReducer = (state, action) => {
@@ -21,34 +15,12 @@ const episodesReducer = (state, action) => {
   }
 };
 
-// Get/Set state with reducer function, using local storage
-const useLocalStorageReducer = (reducer, showId) => {
-  const [watchedEpisodes, setWatchedEpisodes] = useReducer(
-    reducer,
-    JSON.parse(localStorage.getItem("watchedEpisodesData")).find(
-      (item) => item.show === showId
-    )["episodes"]
-  );
-
-  // Store to local storage
-  useEffect(() => {
-    let localData = JSON.parse(localStorage.getItem("watchedEpisodesData"));
-    let selectedShow = localData.find((item) => item.show === showId);
-    selectedShow["episodes"] = watchedEpisodes;
-    let newData = localData.filter((item) => item.show !== showId);
-    newData.push(selectedShow);
-    localStorage.setItem("watchedEpisodesData", JSON.stringify(newData));
-  }, [showId, watchedEpisodes]);
-
-  return [watchedEpisodes, setWatchedEpisodes];
-};
-
 function EpisodesWrapper() {
   const { showId } = useParams();
   const [episodes, setEpisodes] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [watchedEpisodes, setWatchedEpisodes] = useLocalStorageReducer(
+  const [watchedEpisodes, setWatchedEpisodes] = useLocalEpisodesState(
     episodesReducer,
     +showId
   );

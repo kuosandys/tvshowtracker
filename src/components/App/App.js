@@ -1,13 +1,11 @@
 // import "./App.css";
-import React, { useReducer } from "react";
+import React from "react";
 import { Route, Switch, Link } from "react-router-dom";
 
 import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
-
-// test data - get from localstorage eventually
-const sampleShowIds = [1, 2];
+import { useLocalShowsState } from "../../helpers/helpers";
 
 const showsReducer = (state, action) => {
   if (action.type === "add") {
@@ -19,10 +17,7 @@ const showsReducer = (state, action) => {
 };
 
 function App() {
-  const [trackedShows, setTrackedShows] = useReducer(
-    showsReducer,
-    sampleShowIds
-  );
+  const [trackedShows, setTrackedShows] = useLocalShowsState(showsReducer);
 
   return (
     <div className="App">
