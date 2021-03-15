@@ -6,6 +6,7 @@ import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
 import SearchWrapper from "../SearchWrapper/SearchWrapper";
+import TrackShowButton from "../TrackShowButton/TrackShowButton";
 import { useLocalShowsState } from "../../helpers/helpers";
 
 const showsReducer = (state, action) => {
@@ -20,6 +21,13 @@ const showsReducer = (state, action) => {
 function App() {
   const [trackedShows, setTrackedShows] = useLocalShowsState(showsReducer);
 
+  const handleTrack = (showId) => {
+    setTrackedShows({
+      type: trackedShows.includes(showId) ? "remove" : "add",
+      show: +showId,
+    });
+  };
+
   return (
     <div className="App">
       <ul>
@@ -30,10 +38,12 @@ function App() {
           <Link to="/shows">Shows</Link>
         </li>
       </ul>
-      <SearchWrapper />
       <Switch>
         <Route exact path="/shows">
-          <ShowsWrapper trackedShows={trackedShows}></ShowsWrapper>
+          <ShowsWrapper
+            trackedShows={trackedShows}
+            handleTrack={handleTrack}
+          ></ShowsWrapper>
         </Route>
         {trackedShows.map((showId) => {
           return (
@@ -43,6 +53,12 @@ function App() {
             </Route>
           );
         })}
+        <Route exact path="/">
+          <SearchWrapper
+            trackedShows={trackedShows}
+            handleTrack={handleTrack}
+          />
+        </Route>
       </Switch>
     </div>
   );

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 
 import SearchBar from "../SearchBar/SearchBar";
 import ShowCard from "../ShowCard/ShowCard";
+import TrackShowButton from "../TrackShowButton/TrackShowButton";
 
-function SearchWrapper() {
+function SearchWrapper(props) {
+  const { trackedShows, handleTrack } = props;
   const [searchResults, setSearchResults] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -29,7 +31,15 @@ function SearchWrapper() {
       <SearchBar handleSubmitSearch={handleSubmitSearch}></SearchBar>
       {isLoaded &&
         searchResults.map((result) => {
-          return <ShowCard key={result.show.id} show={result.show}></ShowCard>;
+          return (
+            <ShowCard key={result.show.id} show={result.show}>
+              <TrackShowButton
+                showId={result.show.id}
+                trackedShows={trackedShows}
+                handleTrack={handleTrack}
+              />
+            </ShowCard>
+          );
         })}
     </div>
   );
