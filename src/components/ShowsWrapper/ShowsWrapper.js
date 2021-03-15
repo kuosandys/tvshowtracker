@@ -10,14 +10,18 @@ function ShowsWrapper(props) {
     const fetchShowData = async () => {
       let showsData = [];
 
-      await Promise.all(
-        trackedShows.map(async (showId) => {
-          let response = await fetch(`http://api.tvmaze.com/shows/${showId}`);
-          let data = await response.json();
-          showsData.push(data);
-        })
-      );
-      setShows(showsData);
+      try {
+        await Promise.all(
+          trackedShows.map(async (showId) => {
+            let response = await fetch(`http://api.tvmaze.com/shows/${showId}`);
+            let data = await response.json();
+            showsData.push(data);
+          })
+        );
+        setShows(showsData);
+      } catch (error) {
+        alert(error);
+      }
     };
     fetchShowData();
   }, [trackedShows]);

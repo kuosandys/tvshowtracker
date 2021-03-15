@@ -27,13 +27,17 @@ function EpisodesWrapper() {
 
   useEffect(() => {
     const fetchShowData = async () => {
-      let response = await fetch(
-        `http://api.tvmaze.com/shows/${showId}/episodes?specials=1`
-      );
-      let dataObject = await response.json();
-      let dataArray = Object.values(dataObject);
-      setEpisodes(dataArray);
-      setIsLoaded(true);
+      try {
+        let response = await fetch(
+          `http://api.tvmaze.com/shows/${showId}/episodes?specials=1`
+        );
+        let dataObject = await response.json();
+        let dataArray = Object.values(dataObject);
+        setEpisodes(dataArray);
+        setIsLoaded(true);
+      } catch (error) {
+        alert(error);
+      }
     };
     fetchShowData();
   }, [showId]);
