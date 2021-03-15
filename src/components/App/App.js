@@ -5,6 +5,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
+import SearchWrapper from "../SearchWrapper/SearchWrapper";
 import { useLocalShowsState } from "../../helpers/helpers";
 
 const showsReducer = (state, action) => {
@@ -29,6 +30,7 @@ function App() {
           <Link to="/shows">Shows</Link>
         </li>
       </ul>
+      <SearchWrapper />
       <Switch>
         <Route exact path="/shows">
           <ShowsWrapper trackedShows={trackedShows}></ShowsWrapper>
