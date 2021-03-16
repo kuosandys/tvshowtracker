@@ -27,7 +27,7 @@ function ShowsWrapper(props) {
   }, [trackedShows]);
 
   return (
-    <div className="flex flex-wrap justify-center">
+    <div className="flex flex-wrap justify-center max-w-screen-lg mx-auto">
       {shows.map((show) => {
         return (
           <ShowCard key={show.id} show={show}>
