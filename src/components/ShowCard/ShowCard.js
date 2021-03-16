@@ -7,7 +7,7 @@ function ShowCard(props) {
   const { show, children } = props;
 
   return (
-    <div className="border-box flex flex-col items-stretch overflow-hidden h-96 w-52 bg-white">
+    <div className="border-box flex flex-col items-stretch overflow-hidden h-96 w-52 bg-white m-4">
       <ShowCardLink show={show}>
         <img
           src={show.image?.medium}
@@ -21,7 +21,7 @@ function ShowCard(props) {
       <section className="self-stretch flex justify-between items-baseline text-sm mx-4">
         <h3>
           <span>{show.network?.country?.code || ""}</span>
-          <span>{`${show.premiered?.slice(0, 4) || "Date Unknown"}`}</span>
+          <span>{`${show.premiered?.slice(0, 4) || "-"}`}</span>
         </h3>
         {children}
       </section>
