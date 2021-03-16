@@ -29,7 +29,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="pt-20 font-sans bg-gray-100 min-h-screen h-full">
       <Nav />
       <Switch>
         <Route exact path="/shows">
