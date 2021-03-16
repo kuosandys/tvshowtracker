@@ -1,12 +1,12 @@
 // import "./App.css";
 import React from "react";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
 import SearchWrapper from "../SearchWrapper/SearchWrapper";
-import TrackShowButton from "../TrackShowButton/TrackShowButton";
+import Nav from "../Nav/Nav";
 import { useLocalShowsState } from "../../helpers/helpers";
 
 const showsReducer = (state, action) => {
@@ -30,20 +30,10 @@ function App() {
 
   return (
     <div className="App">
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/shows">Shows</Link>
-        </li>
-      </ul>
+      <Nav />
       <Switch>
         <Route exact path="/shows">
-          <ShowsWrapper
-            trackedShows={trackedShows}
-            handleTrack={handleTrack}
-          ></ShowsWrapper>
+          <ShowsWrapper trackedShows={trackedShows} handleTrack={handleTrack} />
         </Route>
         {trackedShows.map((showId) => {
           return (
