@@ -27,20 +27,22 @@ function SearchWrapper(props) {
   };
 
   return (
-    <div>
+    <div className="max-w-screen-lg mx-auto">
       <SearchBar handleSubmitSearch={handleSubmitSearch}></SearchBar>
-      {isLoaded &&
-        searchResults.map((result) => {
-          return (
-            <ShowCard key={result.show.id} show={result.show}>
-              <TrackShowButton
-                showId={result.show.id}
-                trackedShows={trackedShows}
-                handleTrack={handleTrack}
-              />
-            </ShowCard>
-          );
-        })}
+      <div className="flex flex-wrap justify-center">
+        {isLoaded &&
+          searchResults.map((result) => {
+            return (
+              <ShowCard key={result.show.id} show={result.show}>
+                <TrackShowButton
+                  showId={result.show.id}
+                  trackedShows={trackedShows}
+                  handleTrack={handleTrack}
+                />
+              </ShowCard>
+            );
+          })}
+      </div>
     </div>
   );
 }
