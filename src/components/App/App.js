@@ -43,7 +43,7 @@ function App() {
             </Route>
           );
         })}
-        <Route exact path="/">
+        <Route path="/explore">
           <SearchWrapper
             trackedShows={trackedShows}
             handleTrack={handleTrack}
