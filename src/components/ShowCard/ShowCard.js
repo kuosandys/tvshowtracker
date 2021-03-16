@@ -7,15 +7,24 @@ function ShowCard(props) {
   const { show, children } = props;
 
   return (
-    <div>
-      <h2>{show.name}</h2>
+    <div className="border-box flex flex-col items-stretch overflow-hidden h-96 w-52 bg-white">
       <ShowCardLink show={show}>
-        <img src={show.image?.medium} alt="TV show poster" />
+        <img
+          src={show.image?.medium}
+          alt={show.name}
+          className="h-72 w-52 mx-auto bg-gray-300 text-lg text-center italic text-white align"
+        />
       </ShowCardLink>
-      <h3>Country: {show.network?.country?.code || "Unknown"}</h3>
-      <h3>{`Premiered: ${show.premiered?.slice(0, 4) || "Unknown"}`}</h3>
-      <h3>{`Status: ${show.status}`}</h3>
-      {children}
+      <h2 className="text-lg font-bold m-2 text-center truncate">
+        {show.name}
+      </h2>
+      <section className="self-stretch flex justify-between items-baseline text-sm mx-4">
+        <h3>
+          <span>{show.network?.country?.code || ""}</span>
+          <span>{`${show.premiered?.slice(0, 4) || "Date Unknown"}`}</span>
+        </h3>
+        {children}
+      </section>
     </div>
   );
 }
