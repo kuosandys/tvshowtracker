@@ -52,7 +52,7 @@ function EpisodesWrapper() {
 
   if (isLoaded) {
     return (
-      <div>
+      <div className="max-w-screen-md mx-auto">
         {episodes.map((episode) => {
           return (
             <EpisodeCard key={episode.id} episode={episode}>
