@@ -20,14 +20,31 @@ function ShowDetails() {
 
   if (isLoaded) {
     return (
-      <div>
-        <h2>{show.name}</h2>
+      <div className="max-w-screen-lg mx-auto flex">
         <img src={show.image.medium} alt="TV show poster" />
-        <h3>{`Country: ${show.network.country.code}`}</h3>
-        <h3>{`Language: ${show.language}`}</h3>
-        <h3>{`Premiered: ${show.premiered.slice(0, 4)}`}</h3>
-        <h3>{`Status: ${show.status}`}</h3>
-        <p>{show.summary}</p>
+        <section className="ml-10">
+          <h2 className="text-3xl my-5">{show.name}</h2>
+          <h3>
+            <span className="font-bold">Country: </span>
+            {show.network.country.name}
+          </h3>
+          <h3>
+            <span className="font-bold">Language: </span>
+            {show.language}
+          </h3>
+          <h3>
+            <span className="font-bold">Premiered: </span>
+            {show.premiered.slice(0, 4)}
+          </h3>
+          <h3>
+            <span className="font-bold">Status: </span>
+            {show.status}
+          </h3>
+          <p
+            dangerouslySetInnerHTML={{ __html: show.summary }}
+            className="my-5"
+          ></p>
+        </section>
       </div>
     );
   } else {
