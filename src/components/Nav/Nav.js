@@ -12,6 +12,9 @@ function Nav() {
           <Link to="/shows">My Shows</Link>
         </li>
         <li className="mx-5 font-bold hover:text-blue-300 hover:underline">
+          <Link to="/stats">Stats</Link>
+        </li>
+        <li className="mx-5 font-bold hover:text-blue-300 hover:underline">
           <Link to="/explore">Explore</Link>
         </li>
       </ul>

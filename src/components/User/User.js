@@ -4,10 +4,10 @@ import {Switch, Route} from "react-router-dom"
 import ShowsWrapper from "../ShowsWrapper/ShowsWrapper"
 import ShowDetails from "../ShowDetails/ShowDetails"
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper"
+import Stats from "../Stats/Stats"
 import {useLocalState} from "../../helpers/helpers"
 
-function User(props) {
-  const {trackedShows, handleTrack} = props;
+function User({trackedShows, handleTrack}) {
   const [watchedEpisodes, setWatchedEpisodes] = useLocalState("watchedEpisodes");
   const [showsData, setShowsData] = useState([]);
   const [watchedEpisodesData, setWatchedEpisodesData] = useState([])
@@ -54,6 +54,9 @@ function User(props) {
 
   return (
     <Switch>
+      <Route exact path="/stats">
+        <Stats showsData={showsData} watchedEpisodesData={watchedEpisodesData}/>
+      </Route>
       <Route exact path="/shows">
         <ShowsWrapper trackedShows={trackedShows} handleTrack={handleTrack} showsData={showsData} />
       </Route>
