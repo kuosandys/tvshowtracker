@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import WatchedButton from "../WatchedButton/WatchedButton";
-import { useLocalState } from "../../helpers/helpers";
 
-function EpisodesWrapper(props) {
-  const {watchedEpisodes, setWatchedEpisodes} = props;
-  const { showId } = useParams();
+function EpisodesWrapper({showId, timezone, watchedEpisodes, setWatchedEpisodes}) {
   const [episodesData, setEpisodesData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -33,7 +29,7 @@ function EpisodesWrapper(props) {
       <div className="max-w-screen-md mx-auto">
         {episodesData.map((episode) => {
           return (
-            <EpisodeCard key={episode.id} episode={episode}>
+            <EpisodeCard key={episode.id} episode={episode} timezone={timezone}>
               <WatchedButton
                 episodeId={episode.id}
                 watched={watchedEpisodes.includes(episode.id) ? true : false}

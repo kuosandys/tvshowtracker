@@ -1,24 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 
 // Display detailed information for a show
-function ShowDetails() {
-  const { showId } = useParams();
+function ShowDetails({show}) {
 
-  const [show, setShow] = useState({});
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const fetchShowData = async () => {
-      let response = await fetch(`http://api.tvmaze.com/shows/${showId}`);
-      let data = await response.json();
-      setShow(data);
-      setIsLoaded(true);
-    };
-    fetchShowData();
-  }, [showId]);
-
-  if (isLoaded) {
     return (
       <div className="max-w-screen-lg mx-auto flex">
         <img
@@ -55,13 +39,6 @@ function ShowDetails() {
         </section>
       </div>
     );
-  } else {
-    return (
-      <div>
-        <p>loading</p>
-      </div>
-    );
-  }
 }
 
 export default ShowDetails;

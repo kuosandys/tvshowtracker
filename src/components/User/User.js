@@ -60,11 +60,11 @@ function User({trackedShows, handleTrack}) {
       <Route exact path="/shows">
         <ShowsWrapper trackedShows={trackedShows} handleTrack={handleTrack} showsData={showsData} />
       </Route>
-      {trackedShows.map((showId) => {
+      {showsData.map((showData) => {
           return (
-            <Route exact path={`/shows/:showId`} key={showId}>
-              <ShowDetails />
-              <EpisodesWrapper watchedEpisodes={watchedEpisodes} setWatchedEpisodes={setWatchedEpisodes}/>
+            <Route exact path={`/shows/${showData.id}`} key={showData.id}>
+              <ShowDetails show={showData}/>
+              <EpisodesWrapper showId={showData.id} timezone={showData.network?.country?.timezone} watchedEpisodes={watchedEpisodes} setWatchedEpisodes={setWatchedEpisodes}/>
             </Route>
           );
         })}
