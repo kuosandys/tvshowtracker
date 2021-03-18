@@ -18,11 +18,11 @@ function ShowCard(props) {
       <h2 className="text-lg font-bold m-2 text-center truncate">
         {show.name}
       </h2>
-      <section className="self-stretch flex justify-between items-baseline text-sm mx-4">
-        <h3>
-          <span>{show.network?.country?.code || ""}</span>
-          <span>{`${show.premiered?.slice(0, 4) || "-"}`}</span>
-        </h3>
+      <section className="self-stretch flex justify-between items-center text-sm mx-4">
+        <div className="flex items-center">
+          <img src={`https://www.countryflags.io/${show.network?.country?.code.toLowerCase()}/flat/32.png`} alt={show.network?.country?.code || ""}/>
+          <h3>{`${show.premiered?.slice(0, 4) || "-"}`}</h3>
+        </div>
         {children}
       </section>
     </div>
