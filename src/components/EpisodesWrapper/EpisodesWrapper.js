@@ -5,12 +5,11 @@ import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import WatchedButton from "../WatchedButton/WatchedButton";
 import { useLocalState } from "../../helpers/helpers";
 
-function EpisodesWrapper() {
+function EpisodesWrapper(props) {
+  const {watchedEpisodes, setWatchedEpisodes} = props;
   const { showId } = useParams();
   const [episodesData, setEpisodesData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const [watchedEpisodes, setWatchedEpisodes] = useLocalState("watchedEpisodes");
 
   useEffect(() => {
     const fetchShowData = async () => {
