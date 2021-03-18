@@ -11,7 +11,7 @@ function WatchedButton(props) {
 
   return (
     <button
-      onClick={() => handleWatch(watched, episodeId)}
+      onClick={() => handleWatch(episodeId)}
       className={watched ? watchedClass : unwatchedClass}
     >
       {watched ? "Watched" : "Add to Watched"}

@@ -3,27 +3,14 @@ import { useParams } from "react-router-dom";
 
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import WatchedButton from "../WatchedButton/WatchedButton";
-import { useLocalEpisodesState } from "../../helpers/helpers";
-
-// Reducer for updating watched episodes array
-const episodesReducer = (state, action) => {
-  if (action.type === "add") {
-    return [...state, action.episode];
-  } else if (action.type === "remove") {
-    let newState = state.filter((item) => item !== action.episode);
-    return [...newState];
-  }
-};
+import { useLocalState } from "../../helpers/helpers";
 
 function EpisodesWrapper() {
   const { showId } = useParams();
-  const [episodes, setEpisodes] = useState([]);
+  const [episodesData, setEpisodesData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [watchedEpisodes, setWatchedEpisodes] = useLocalEpisodesState(
-    episodesReducer,
-    +showId
-  );
+  const [watchedEpisodes, setWatchedEpisodes] = useLocalState("watchedEpisodes");
 
   useEffect(() => {
     const fetchShowData = async () => {
@@ -33,7 +20,7 @@ function EpisodesWrapper() {
         );
         let dataObject = await response.json();
         let dataArray = Object.values(dataObject);
-        setEpisodes(dataArray);
+        setEpisodesData(dataArray);
         setIsLoaded(true);
       } catch (error) {
         alert(error);
@@ -42,24 +29,16 @@ function EpisodesWrapper() {
     fetchShowData();
   }, [showId]);
 
-  const handleWatch = (watched, episodeId) => {
-    setWatchedEpisodes({
-      type: watched ? "remove" : "add",
-      show: +showId,
-      episode: episodeId,
-    });
-  };
-
   if (isLoaded) {
     return (
       <div className="max-w-screen-md mx-auto">
-        {episodes.map((episode) => {
+        {episodesData.map((episode) => {
           return (
             <EpisodeCard key={episode.id} episode={episode}>
               <WatchedButton
                 episodeId={episode.id}
                 watched={watchedEpisodes.includes(episode.id) ? true : false}
-                handleWatch={handleWatch}
+                handleWatch={setWatchedEpisodes}
               ></WatchedButton>
             </EpisodeCard>
           );
