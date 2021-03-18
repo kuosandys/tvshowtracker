@@ -14,7 +14,7 @@ function ShowDetails({show}) {
           <h2 className="text-3xl my-5">{show.name}</h2>
           <h3>
             <span className="font-bold">Country: </span>
-            {show.network?.country?.name}
+            {show.network?.country?.name || "None"}
           </h3>
           <h3>
             <span className="font-bold">Language: </span>
@@ -22,7 +22,7 @@ function ShowDetails({show}) {
           </h3>
           <h3>
             <span className="font-bold">Premiered: </span>
-            {show.premiered?.slice(0, 4)}
+            {show.premiered?.slice(0, 4) || "Unknown"}
           </h3>
           <h3>
             <span className="font-bold">Status: </span>
