@@ -44,6 +44,10 @@ function ShowDetails() {
             <span className="font-bold">Status: </span>
             {show.status}
           </h3>
+          <h3>
+            <span className="font-bold">Genres: </span>
+            {show.genres?.join(", ")}
+          </h3>
           <p
             dangerouslySetInnerHTML={{ __html: show.summary }}
             className="my-5"
