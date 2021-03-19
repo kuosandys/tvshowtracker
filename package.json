@@ -20,7 +20,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
-    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+    "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -42,7 +43,9 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
+    "gh-pages": "^3.1.0",
     "postcss-cli": "^8.3.1",
     "tailwindcss": "^2.0.3"
-  }
+  },
+  "homepage": "https://kuosandys.github.io/tvshowtracker"
 }
