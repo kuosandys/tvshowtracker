@@ -1,20 +1,17 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 function WatchedButton(props) {
   const { episodeId, watched, handleWatch } = props;
 
-  const watchedClass =
-    "bg-blue-400 hover:bg-blue-700 rounded px-3 py-1.5 text-white";
-
-  const unwatchedClass =
-    "bg-blue-700 hover:bg-blue-400 rounded px-3 py-1.5 text-white";
-
   return (
-    <button
-      onClick={() => handleWatch(episodeId)}
-      className={watched ? watchedClass : unwatchedClass}
-    >
-      {watched ? "Watched" : "Add to Watched"}
+    <button onClick={() => handleWatch(episodeId)} className="h-10 w-10">
+      {watched ? (
+        <FontAwesomeIcon icon={faCheck} className="text-yellow-300" />
+      ) : (
+        <FontAwesomeIcon icon={faTimes} className="text-blue-300" />
+      )}
     </button>
   );
 }

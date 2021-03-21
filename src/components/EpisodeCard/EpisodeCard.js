@@ -1,34 +1,34 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 import EpisodeDetails from "../EpisodeDetails/EpisodeDetails";
 
 function EpisodeCard(props) {
   const { episode, children } = props;
-  const [expand, setExpand] = useState(false);
-
-  function handleClick() {
-    setExpand((expand) => !expand);
-  }
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="border-2 border-gray-400 flex flex-col my-3">
-      <div className="flex justify-between px-5 pt-3">
-        <section>
-          <h3>{`Season ${episode.season} Episode ${episode.number}`}</h3>
-          <h2 className="font-bold text-lg">{episode.name}</h2>
-        </section>
-        <section className="w-60 flex justify-between items-center">
-          <button
-            onClick={(e) => handleClick(e)}
-            className="bg-gray-400 hover:bg-gray-500 rounded px-3 py-1.5 text-white"
-          >
-            Expand
-          </button>
+    <div className="border-2 border-gray-600 flex flex-col -my-0.5 text-white">
+      <div className="flex justify-between px-5 pt-1">
+        <div className="flex items-baseline flex-grow">
           {children}
-        </section>
+          <h3 className="mx-2">Episode {episode.number}</h3>
+          <h2 className="font-bold text-lg mx-2">{episode.name}</h2>
+        </div>
+        <button
+          onClick={() => setIsExpanded((prev) => !prev)}
+          className="h-10 w-10"
+        >
+          {isExpanded ? (
+            <FontAwesomeIcon icon={faChevronUp} />
+          ) : (
+            <FontAwesomeIcon icon={faChevronDown} />
+          )}
+        </button>
       </div>
-      <section className="px-5 pb-3">
-        {expand && <EpisodeDetails {...props}></EpisodeDetails>}
+      <section className="px-5 pb-1">
+        {isExpanded && <EpisodeDetails {...props}></EpisodeDetails>}
       </section>
     </div>
   );
