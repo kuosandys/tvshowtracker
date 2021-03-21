@@ -15,7 +15,7 @@ function SearchBar({ handleSubmitSearch }) {
       ></input>
       <button
         type="submit"
-        className="bg-blue-400 hover:bg-blue-700 rounded px-3 py-1.5 text-white mx-3"
+        className="bg-blue-500 hover:bg-blue-600 rounded px-3 py-1.5 text-white mx-3"
       >
         Search
       </button>
