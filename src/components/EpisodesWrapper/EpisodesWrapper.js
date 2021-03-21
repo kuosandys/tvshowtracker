@@ -41,18 +41,18 @@ function EpisodesWrapper({
     fetchEpisodesData();
   }, [showId]);
 
-  const seasonSelectedClass = "underline bg-blue-500";
+  const seasonSelectedClass = "font-bold bg-indigo-200";
 
   return (
-    <div className="max-w-screen-md mx-auto">
+    <div className="max-w-screen-md mx-auto bg-white border-t-2 border-gray-200">
       {isLoaded && (
         <div>
-          <ul className="flex overflow-x-scroll justify-start border-2 border-gray-600 rounded">
+          <ul className="flex overflow-x-scroll justify-start border-b-2 border-gray-200">
             {seasons.map((season) => {
               return (
                 <li
                   onClick={() => setSeasonSelected(season)}
-                  className={`bg-gray-900 text-white ${
+                  className={`bg-white ${
                     season === seasonSelected && seasonSelectedClass
                   } px-3 py-3 flex-shrink-0 cursor-pointer`}
                 >

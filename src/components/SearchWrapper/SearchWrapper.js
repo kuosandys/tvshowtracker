@@ -27,7 +27,7 @@ function SearchWrapper({ trackedShows, handleTrack, searchQuery }) {
   }, [searchQuery]);
 
   return (
-    <div className="max-w-screen-lg mx-auto">
+    <div className="max-w-screen-lg mx-auto pt-10">
       <div className="flex flex-wrap justify-center">
         {isLoaded &&
           searchResults.map((result) => {

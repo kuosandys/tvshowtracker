@@ -10,7 +10,7 @@ function EpisodeDetails({ episode, timezone }) {
         <h4 className="italic">{`Aired ${format(
           new Date(...episode.airdate?.split("-")),
           "LLL do yyyy"
-        )} at ${episode.airtime} ${
+        )} ${episode.airtime} ${
           moment(episode.airdate)?.tz(timezone)?.zoneAbbr() || ""
         }`}</h4>
         <p

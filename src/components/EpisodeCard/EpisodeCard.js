@@ -9,12 +9,12 @@ function EpisodeCard(props) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="border-2 border-gray-600 flex flex-col -my-0.5 text-white">
+    <div className="border-t-2 border-gray-200 flex flex-col -my-0.5">
       <div className="flex justify-between px-5 pt-1">
-        <div className="flex items-baseline flex-grow">
+        <div className="flex items-center flex-grow">
           {children}
-          <h3 className="mx-2">Episode {episode.number}</h3>
-          <h2 className="font-bold text-lg mx-2">{episode.name}</h2>
+          <h3 className="ml-6 mr-2 w-24">Episode {episode.number}</h3>
+          <h2 className="font-bold text-lg">{episode.name}</h2>
         </div>
         <button
           onClick={() => setIsExpanded((prev) => !prev)}

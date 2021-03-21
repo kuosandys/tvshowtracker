@@ -11,11 +11,11 @@ function SearchBar({ handleSubmitSearch }) {
       <input
         type="text"
         onChange={(e) => setSearchInput(e.target.value)}
-        className="mx-3 px-3 rounded text-black"
+        className="mx-3 px-3 rounded text-gray-900"
       ></input>
       <button
         type="submit"
-        className="bg-blue-500 hover:bg-blue-600 rounded px-3 py-1.5 text-white mx-3"
+        className="bg-indigo-300 hover:bg-indigo-400 rounded px-3 py-1.5 mx-3"
       >
         Search
       </button>
