@@ -1,18 +1,22 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 function TrackShowButton(props) {
   const { showId, trackedShows, handleTrack } = props;
-  const trackedClass =
-    "bg-blue-400 hover:bg-blue-700 rounded px-3 py-1.5 text-white";
 
-  const untrackedClass =
-    "bg-blue-700 hover:bg-blue-400 rounded px-3 py-1.5 text-white";
   return (
     <button
       onClick={() => handleTrack(showId)}
-      className={trackedShows.includes(showId) ? trackedClass : untrackedClass}
+      className={`rounded-full h-8 w-8 border-2 ${
+        trackedShows.includes(showId) ? "border-yellow-300" : "border-blue-400"
+      }`}
     >
-      {trackedShows.includes(showId) ? "Tracked" : "Track Show"}
+      {trackedShows.includes(showId) ? (
+        <FontAwesomeIcon icon={faCheck} className="text-yellow-300" />
+      ) : (
+        <FontAwesomeIcon icon={faTimes} className="text-blue-400" />
+      )}
     </button>
   );
 }
