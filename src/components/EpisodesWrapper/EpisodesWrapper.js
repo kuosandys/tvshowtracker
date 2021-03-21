@@ -41,13 +41,13 @@ function EpisodesWrapper({
     fetchEpisodesData();
   }, [showId]);
 
-  const seasonSelectedClass = "underline bg-blue-800";
+  const seasonSelectedClass = "underline bg-blue-500";
 
   return (
     <div className="max-w-screen-md mx-auto">
       {isLoaded && (
         <div>
-          <ul className="flex overflow-x-scroll justify-between border-2 border-gray-600">
+          <ul className="flex overflow-x-scroll justify-start border-2 border-gray-600 rounded">
             {seasons.map((season) => {
               return (
                 <li
