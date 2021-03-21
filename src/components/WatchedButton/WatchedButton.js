@@ -10,7 +10,7 @@ function WatchedButton(props) {
       {watched ? (
         <FontAwesomeIcon icon={faCheck} className="text-yellow-300" />
       ) : (
-        <FontAwesomeIcon icon={faTimes} className="text-blue-300" />
+        <FontAwesomeIcon icon={faTimes} className="text-blue-400" />
       )}
     </button>
   );
