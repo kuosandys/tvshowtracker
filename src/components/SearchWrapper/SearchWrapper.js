@@ -3,7 +3,12 @@ import React, { useEffect, useState } from "react";
 import ShowCard from "../ShowCard/ShowCard";
 import TrackShowButton from "../TrackShowButton/TrackShowButton";
 
-function SearchWrapper({ trackedShows, handleTrack, searchQuery }) {
+function SearchWrapper({
+  trackedShows,
+  handleTrack,
+  searchQuery,
+  setSearchRequested,
+}) {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -19,15 +24,17 @@ function SearchWrapper({ trackedShows, handleTrack, searchQuery }) {
         );
         setSearchResults(dataArray);
         setIsLoaded(true);
+        setSearchRequested(false);
       } catch (error) {
         alert(error);
       }
     };
     fetchSearchResults();
-  }, [searchQuery]);
+  }, [searchQuery, setSearchRequested]);
 
   return (
     <div className="max-w-screen-lg mx-auto pt-10">
+      <p className="text-center italic">Search results for "{searchQuery}"</p>
       <div className="flex flex-wrap justify-center">
         {isLoaded &&
           searchResults.map((result) => {

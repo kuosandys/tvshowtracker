@@ -31,6 +31,7 @@ function App() {
             trackedShows={trackedShows}
             handleTrack={setTrackedShows}
             searchQuery={searchQuery}
+            setSearchRequested={setSearchRequested}
           />
         </Route>
       </Switch>
