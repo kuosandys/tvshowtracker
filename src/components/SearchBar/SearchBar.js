@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 
-function SearchBar(props) {
-  const { handleSubmitSearch } = props;
+function SearchBar({ handleSubmitSearch }) {
   const [searchInput, setSearchInput] = useState("");
-
-  const handleChange = (e) => {
-    setSearchInput(e.target.value);
-  };
 
   return (
     <form
@@ -15,8 +10,8 @@ function SearchBar(props) {
     >
       <input
         type="text"
-        onChange={handleChange}
-        className="mx-3 px-3 rounded"
+        onChange={(e) => setSearchInput(e.target.value)}
+        className="mx-3 px-3 rounded text-black"
       ></input>
       <button
         type="submit"
