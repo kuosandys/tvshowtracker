@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { useSessionState, stringDataReducer } from "../../helpers/helpers";
 
@@ -8,6 +10,7 @@ function Stats({ showsData, watchedEpisodesData }) {
     stringDataReducer,
     "Guest"
   );
+  const [inputEditable, setInputEditable] = useState(false);
 
   // Gets the user's top 3 genres
   const getTopGenres = () => {
@@ -28,30 +31,56 @@ function Stats({ showsData, watchedEpisodesData }) {
     return top3;
   };
   return (
-    <div>
-      <h1>
-        Hello, <input onChange={(e) => setName(e.target.value)} value={name} />!
-      </h1>
-      <h2>
-        <span>Shows Tracked: </span>
-        {showsData.length}
-      </h2>
-      <h2>
-        <span>Episodes Watched: </span>
-        {watchedEpisodesData.length}
-      </h2>
-      <h2>
-        <span>Watch Time: </span>
-        {watchedEpisodesData.reduce(
-          (prev, current) => prev + current.runtime,
-          0
+    <section className="lg:max-w-screen-lg md:max-w-screen-md mx-auto py-10 bg-gray-900 text-white">
+      <div className="flex text-2xl pl-10 justify-center items-center">
+        <h1 className="mx-2">
+          {showsData.length > 0 ? "Welcome back" : "Hello"},
+        </h1>
+        {inputEditable ? (
+          <input
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            className="bg-transparent ml-2 w-32 overflow-x-scroll"
+          />
+        ) : (
+          <h1 className="font-medium">{name}</h1>
         )}
-        mins
-      </h2>
-      <h2>
-        <span>Top Genres: {getTopGenres().join(", ")}</span>
-      </h2>
-    </div>
+        <button
+          onClick={() => setInputEditable((prevState) => !prevState)}
+          className="mx-2 px-2 text-sm text-indigo-300"
+        >
+          {inputEditable ? (
+            <FontAwesomeIcon icon={faCheck} />
+          ) : (
+            <FontAwesomeIcon icon={faPen} />
+          )}
+        </button>
+      </div>
+      <section className="max-w-screen-sm mx-auto grid grid-cols-2 grid-rows-2 grid-flow-col text-center border-2 border-gray-500 rounded mt-5">
+        <div className="flex flex-col border-2 border-gray-500 p-2">
+          <h3>Shows Tracked</h3>
+          <span className="text-3xl">{showsData.length}</span>
+        </div>
+        <div className="flex flex-col border-2 border-gray-500 p-2">
+          <h3>Episodes Watched</h3>
+          <span className="text-3xl">{watchedEpisodesData.length}</span>
+        </div>
+        <div className="flex flex-col border-2 border-gray-500 p-2">
+          <h3>Top Genres</h3>
+          <span className="text-2xl">{getTopGenres().join(", ")}</span>
+        </div>
+        <div className="flex flex-col border-2 border-gray-500 p-2">
+          <h3>Watch Time</h3>
+          <span className="text-2xl">
+            {watchedEpisodesData.reduce(
+              (prev, current) => prev + current.runtime,
+              0
+            )}{" "}
+            mins
+          </span>
+        </div>
+      </section>
+    </section>
   );
 }
 

@@ -23,22 +23,24 @@ function App() {
   };
 
   return (
-    <div className="px-10 py-10 font-sans font-extralight bg-gray-100 min-h-screen h-full text-lg">
+    <div className="px-10 pt-10 font-sans font-extralight bg-gray-100 h-full min-h-screen text-lg">
       <Nav>
         <SearchBar handleSubmitSearch={handleSubmitSearch} />
       </Nav>
-      {searchRequested && <Redirect to="/search" />}
-      <User trackedShows={trackedShows} handleTrack={setTrackedShows} />
-      <Switch>
-        <Route path="/search">
-          <SearchWrapper
-            trackedShows={trackedShows}
-            handleTrack={setTrackedShows}
-            searchQuery={searchQuery}
-            setSearchRequested={setSearchRequested}
-          />
-        </Route>
-      </Switch>
+      <div className="lg:max-w-screen-lg md:max-w-screen-md mx-auto h-full min-h-screen bg-white">
+        {searchRequested && <Redirect to="/search" />}
+        <User trackedShows={trackedShows} handleTrack={setTrackedShows} />
+        <Switch>
+          <Route path="/search">
+            <SearchWrapper
+              trackedShows={trackedShows}
+              handleTrack={setTrackedShows}
+              searchQuery={searchQuery}
+              setSearchRequested={setSearchRequested}
+            />
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 }

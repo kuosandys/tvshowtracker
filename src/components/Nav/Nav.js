@@ -11,9 +11,6 @@ function Nav({ children }) {
         <li className="mx-5 font-bold hover:underline">
           <Link to="/shows">My Shows</Link>
         </li>
-        <li className="mx-5 font-bold hover:underline">
-          <Link to="/stats">Stats</Link>
-        </li>
       </ul>
       {children}
     </div>

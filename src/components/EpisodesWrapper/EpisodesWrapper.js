@@ -44,7 +44,7 @@ function EpisodesWrapper({
   const seasonSelectedClass = "font-bold bg-indigo-200";
 
   return (
-    <div className="max-w-screen-md mx-auto bg-white border-t-2 border-gray-200">
+    <div className="md:max-w-screen-md lg:max-w-screen-lg mx-auto bg-white">
       {isLoaded && (
         <div>
           <ul className="flex overflow-x-scroll justify-start border-b-2 border-gray-200">
