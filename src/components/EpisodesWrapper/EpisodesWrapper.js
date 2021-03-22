@@ -19,7 +19,7 @@ function EpisodesWrapper({
       try {
         // Fetch episodes data from TVmaze API
         let response = await fetch(
-          `http://api.tvmaze.com/shows/${showId}/episodes?specials=1`
+          `https://api.tvmaze.com/shows/${showId}/episodes?specials=1`
         );
         let dataObject = await response.json();
 

@@ -21,7 +21,9 @@ function User({ trackedShows, handleTrack }) {
       try {
         await Promise.all(
           trackedShows.map(async (showId) => {
-            let response = await fetch(`http://api.tvmaze.com/shows/${showId}`);
+            let response = await fetch(
+              `https://api.tvmaze.com/shows/${showId}`
+            );
             let data = await response.json();
             fetchedData.push(data);
           })
@@ -42,7 +44,7 @@ function User({ trackedShows, handleTrack }) {
         await Promise.all(
           watchedEpisodes.map(async (episodeId) => {
             let response = await fetch(
-              `http://api.tvmaze.com/episodes/${episodeId}`
+              `https://api.tvmaze.com/episodes/${episodeId}`
             );
             let data = await response.json();
             fetchedData.push(data);
