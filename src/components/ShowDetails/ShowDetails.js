@@ -3,7 +3,7 @@ import React from "react";
 // Display detailed information for a show
 function ShowDetails({ show }) {
   return (
-    <div className="max-w-screen-md mx-auto pt-10 flex flex-col bg-gray-800 text-white">
+    <div className="max-w-screen-md mx-auto pt-10 flex flex-col bg-gray-900 text-white">
       <div className="ml-10 flex">
         <img
           src={show.image?.medium}
@@ -11,7 +11,7 @@ function ShowDetails({ show }) {
           className="max-h-80 my-auto"
         />
         <section className="ml-10 my-auto">
-          <h2 className="text-3xl my-5">{show.name}</h2>
+          <h2 className="text-3xl font-medium my-5">{show.name}</h2>
           <h3>
             <span className="text-indigo-200">Country: </span>
             {show.network?.country?.name || "None"}

@@ -23,7 +23,7 @@ function App() {
   };
 
   return (
-    <div className="px-10 py-10 font-crimson bg-gray-100 min-h-screen h-full text-xl">
+    <div className="px-10 py-10 font-sans font-extralight bg-gray-100 min-h-screen h-full text-lg">
       <Nav>
         <SearchBar handleSubmitSearch={handleSubmitSearch} />
       </Nav>
