@@ -7,7 +7,7 @@ function WatchedButton(props) {
 
   return (
     <button
-      onClick={() => handleWatch(episodeId)}
+      onClick={() => handleWatch(+episodeId)}
       className={`h-6 w-6 border-2 rounded-full border-indigo-800 ${
         watched ? "bg-indigo-200" : ""
       }`}

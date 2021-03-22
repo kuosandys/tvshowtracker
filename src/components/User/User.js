@@ -5,11 +5,13 @@ import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
 import Stats from "../Stats/Stats";
-import { useSessionState } from "../../helpers/helpers";
+import { useSessionState, arrayDataReducer } from "../../helpers/helpers";
 
 function User({ trackedShows, handleTrack }) {
   const [watchedEpisodes, setWatchedEpisodes] = useSessionState(
-    "watchedEpisodes"
+    "watchedEpisodes",
+    arrayDataReducer,
+    []
   );
   const [showsData, setShowsData] = useState([]);
   const [watchedEpisodesData, setWatchedEpisodesData] = useState([]);
@@ -60,13 +62,11 @@ function User({ trackedShows, handleTrack }) {
 
   return (
     <Switch>
-      <Route exact path="/stats">
+      <Route exact path="/shows">
         <Stats
           showsData={showsData}
           watchedEpisodesData={watchedEpisodesData}
         />
-      </Route>
-      <Route exact path="/shows">
         <ShowsWrapper
           trackedShows={trackedShows}
           handleTrack={handleTrack}

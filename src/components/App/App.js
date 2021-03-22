@@ -5,10 +5,14 @@ import SearchWrapper from "../SearchWrapper/SearchWrapper";
 import Nav from "../Nav/Nav";
 import User from "../User/User";
 import SearchBar from "../SearchBar/SearchBar";
-import { useSessionState } from "../../helpers/helpers";
+import { useSessionState, arrayDataReducer } from "../../helpers/helpers";
 
 function App() {
-  const [trackedShows, setTrackedShows] = useSessionState("trackedShows");
+  const [trackedShows, setTrackedShows] = useSessionState(
+    "trackedShows",
+    arrayDataReducer,
+    []
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [searchRequested, setSearchRequested] = useState(false);
 
