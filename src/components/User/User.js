@@ -5,10 +5,10 @@ import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
 import Stats from "../Stats/Stats";
-import { useLocalState } from "../../helpers/helpers";
+import { useSessionState } from "../../helpers/helpers";
 
 function User({ trackedShows, handleTrack }) {
-  const [watchedEpisodes, setWatchedEpisodes] = useLocalState(
+  const [watchedEpisodes, setWatchedEpisodes] = useSessionState(
     "watchedEpisodes"
   );
   const [showsData, setShowsData] = useState([]);
