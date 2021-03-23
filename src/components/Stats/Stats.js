@@ -4,7 +4,7 @@ import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { useSessionState, stringDataReducer } from "../../helpers/helpers";
 
-function Stats({ showsData, watchedEpisodesData }) {
+function Stats({ showsData, watchedEpisodes, episodesData }) {
   const [name, setName] = useSessionState(
     "username",
     stringDataReducer,
@@ -63,7 +63,9 @@ function Stats({ showsData, watchedEpisodesData }) {
         </div>
         <div className="flex flex-col border-2 border-gray-500 p-2">
           <h3>Episodes Watched</h3>
-          <span className="text-3xl">{watchedEpisodesData.length}</span>
+          <span className="text-3xl">
+            {watchedEpisodes.length} / {episodesData.length}
+          </span>
         </div>
         <div className="flex flex-col border-2 border-gray-500 p-2">
           <h3>Top Genres</h3>
@@ -72,10 +74,10 @@ function Stats({ showsData, watchedEpisodesData }) {
         <div className="flex flex-col border-2 border-gray-500 p-2">
           <h3>Watch Time</h3>
           <span className="text-2xl">
-            {watchedEpisodesData.reduce(
-              (prev, current) => prev + current.runtime,
-              0
-            )}{" "}
+            {episodesData
+              .filter((episode) => watchedEpisodes.includes(episode.id))
+              .map((episode) => episode.runtime)
+              .reduce((prev, current) => prev + current.runtime, 0)}{" "}
             mins
           </span>
         </div>

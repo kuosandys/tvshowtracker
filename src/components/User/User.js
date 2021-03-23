@@ -7,6 +7,39 @@ import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
 import Stats from "../Stats/Stats";
 import { useSessionState, arrayDataReducer } from "../../helpers/helpers";
 
+// Get all episodes data for an array of show id's
+const fetchAllEpisodesData = async (showIds) => {
+  let fetchedData = [];
+
+  try {
+    await Promise.all(
+      showIds.map(async (showId) => {
+        // Episodes data returned from TVmaze API does not have show name or timezone
+        // We add it as an extra field to each episode
+        let showResponse = await fetch(`http://api.tvmaze.com/shows/${showId}`);
+        let showData = await showResponse.json();
+        let showName = showData.name;
+        let timezone = showData.network?.country?.timezone;
+
+        // Get episodes data
+        let episodesResponse = await fetch(
+          `https://api.tvmaze.com/shows/${showId}/episodes?specials=1`
+        );
+        let episodesData = await episodesResponse.json();
+
+        episodesData.forEach((episodeData) => {
+          return { ...episodeData, show: showName, timezone: timezone };
+        });
+
+        fetchedData = [...fetchedData, ...episodesData];
+      })
+    );
+    return fetchedData;
+  } catch (error) {
+    alert(error);
+  }
+};
+
 function User({ trackedShows, handleTrack }) {
   const [watchedEpisodes, setWatchedEpisodes] = useSessionState(
     "watchedEpisodes",
@@ -14,7 +47,19 @@ function User({ trackedShows, handleTrack }) {
     []
   );
   const [showsData, setShowsData] = useState([]);
-  const [watchedEpisodesData, setWatchedEpisodesData] = useState([]);
+  // const [watchedEpisodesData, setWatchedEpisodesData] = useState([]);
+  const [episodesData, setEpisodesData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Get all episodes data for tracked shows
+  useEffect(() => {
+    const getAllEpisodesData = async () => {
+      let allEpisodesData = await fetchAllEpisodesData(trackedShows);
+      setEpisodesData(allEpisodesData);
+      setIsLoaded(true);
+    };
+    getAllEpisodesData();
+  }, [trackedShows]);
 
   useEffect(() => {
     const fetchShowData = async () => {
@@ -38,40 +83,23 @@ function User({ trackedShows, handleTrack }) {
     fetchShowData();
   }, [trackedShows]);
 
-  useEffect(() => {
-    const fetchEpisodesData = async () => {
-      let fetchedData = [];
-
-      try {
-        await Promise.all(
-          watchedEpisodes.map(async (episodeId) => {
-            let response = await fetch(
-              `https://api.tvmaze.com/episodes/${episodeId}`
-            );
-            let data = await response.json();
-            fetchedData.push(data);
-          })
-        );
-        setWatchedEpisodesData(fetchedData);
-      } catch (error) {
-        alert(error);
-      }
-    };
-    fetchEpisodesData();
-  }, [watchedEpisodes]);
-
   return (
     <Switch>
       <Route exact path="/shows">
-        <Stats
-          showsData={showsData}
-          watchedEpisodesData={watchedEpisodesData}
-        />
-        <ShowsWrapper
-          trackedShows={trackedShows}
-          handleTrack={handleTrack}
-          showsData={showsData}
-        />
+        {isLoaded && (
+          <Stats
+            showsData={showsData}
+            watchedEpisodes={watchedEpisodes}
+            episodesData={episodesData}
+          />
+        )}
+        {isLoaded && (
+          <ShowsWrapper
+            trackedShows={trackedShows}
+            handleTrack={handleTrack}
+            showsData={showsData}
+          />
+        )}
       </Route>
       {showsData.map((showData) => {
         return (
