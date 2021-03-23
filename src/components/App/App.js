@@ -27,20 +27,18 @@ function App() {
       <Nav>
         <SearchBar handleSubmitSearch={handleSubmitSearch} />
       </Nav>
-      <div className="lg:max-w-screen-lg md:max-w-screen-md mx-auto h-full min-h-screen bg-white">
-        {searchRequested && <Redirect to="/search" />}
-        <User trackedShows={trackedShows} handleTrack={setTrackedShows} />
-        <Switch>
-          <Route path="/search">
-            <SearchWrapper
-              trackedShows={trackedShows}
-              handleTrack={setTrackedShows}
-              searchQuery={searchQuery}
-              setSearchRequested={setSearchRequested}
-            />
-          </Route>
-        </Switch>
-      </div>
+      {searchRequested && <Redirect to="/search" />}
+      <User trackedShows={trackedShows} handleTrack={setTrackedShows} />
+      <Switch>
+        <Route path="/search">
+          <SearchWrapper
+            trackedShows={trackedShows}
+            handleTrack={setTrackedShows}
+            searchQuery={searchQuery}
+            setSearchRequested={setSearchRequested}
+          />
+        </Route>
+      </Switch>
     </div>
   );
 }

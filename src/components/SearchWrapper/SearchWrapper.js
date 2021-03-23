@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import ShowCard from "../ShowCard/ShowCard";
 import TrackShowButton from "../TrackShowButton/TrackShowButton";
+import Layout2 from "../Layout/Layout2";
 
 function SearchWrapper({
   trackedShows,
@@ -33,7 +34,7 @@ function SearchWrapper({
   }, [searchQuery, setSearchRequested]);
 
   return (
-    <div className="max-w-screen-lg mx-auto pt-10">
+    <Layout2>
       <p className="text-center italic">Search results for "{searchQuery}"</p>
       <div className="flex flex-wrap justify-center">
         {isLoaded &&
@@ -49,7 +50,7 @@ function SearchWrapper({
             );
           })}
       </div>
-    </div>
+    </Layout2>
   );
 }
 

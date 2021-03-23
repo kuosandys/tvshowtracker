@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
+import Layout1 from "../Layout/Layout1";
 import Stats from "../Stats/Stats";
 import { fetchAllEpisodesData, fetchAllShowsData } from "./helpers";
 import { useSessionState, arrayDataReducer } from "../../helpers/helpers";
@@ -38,30 +39,40 @@ function User({ trackedShows, handleTrack }) {
   return (
     <Switch>
       <Route exact path="/shows">
-        <Stats
-          showsData={showsData}
-          watchedEpisodes={watchedEpisodes}
-          episodesData={episodesData}
-        />
-
-        <ShowsWrapper
-          trackedShows={trackedShows}
-          handleTrack={handleTrack}
-          showsData={showsData}
+        <Layout1
+          child1={
+            <Stats
+              showsData={showsData}
+              watchedEpisodes={watchedEpisodes}
+              episodesData={episodesData}
+            />
+          }
+          child2={
+            <ShowsWrapper
+              trackedShows={trackedShows}
+              handleTrack={handleTrack}
+              showsData={showsData}
+            />
+          }
         />
       </Route>
+
       {showsData.map((showData) => {
         return (
           <Route exact path={`/shows/${showData.id}`} key={showData.id}>
-            <ShowDetails show={showData} />
-            <EpisodesWrapper
-              showId={showData.id}
-              timezone={showData.network?.country?.timezone}
-              episodesData={episodesData.filter(
-                (episode) => episode.show === showData.name
-              )}
-              watchedEpisodes={watchedEpisodes}
-              setWatchedEpisodes={setWatchedEpisodes}
+            <Layout1
+              child1={<ShowDetails show={showData} />}
+              child2={
+                <EpisodesWrapper
+                  showId={showData.id}
+                  timezone={showData.network?.country?.timezone}
+                  episodesData={episodesData.filter(
+                    (episode) => episode.show === showData.name
+                  )}
+                  watchedEpisodes={watchedEpisodes}
+                  setWatchedEpisodes={setWatchedEpisodes}
+                />
+              }
             />
           </Route>
         );

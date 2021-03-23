@@ -14,7 +14,7 @@ function Stats({ showsData, watchedEpisodes, episodesData }) {
   const [inputEditable, setInputEditable] = useState(false);
 
   return (
-    <section className="lg:max-w-screen-lg md:max-w-screen-md mx-auto py-10 bg-gray-900 text-white">
+    <section>
       <div className="flex text-2xl pl-10 justify-center items-center">
         <h1 className="mx-2">
           {showsData.length > 0 ? "Welcome back" : "Hello"},
