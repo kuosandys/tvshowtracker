@@ -1,14 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
-import { getSeasons } from "./helpers";
+import { getSeasons } from "../../helpers/dataHelpers";
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import WatchedButton from "../WatchedButton/WatchedButton";
-import { WatchedEpisodesContext } from "../Contexts/Contexts";
 
 function EpisodesWrapper({ episodesData }) {
   const [seasonSelected, setSeasonSelected] = useState(1);
-
-  const { watchedEpisodes } = useContext(WatchedEpisodesContext);
 
   const seasons = getSeasons(episodesData);
 

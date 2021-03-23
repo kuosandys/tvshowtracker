@@ -6,7 +6,10 @@ import ShowDetails from "../ShowDetails/ShowDetails";
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
 import Layout1 from "../Layout/Layout1";
 import Stats from "../Stats/Stats";
-import { fetchAllEpisodesData, fetchAllShowsData } from "./helpers";
+import {
+  fetchAllEpisodesData,
+  fetchAllShowsData,
+} from "../../helpers/fetchHelpers";
 import { useSessionState, arrayDataReducer } from "../../helpers/helpers";
 import {
   TrackedShowsContext,

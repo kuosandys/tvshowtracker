@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import SearchWrapper from "../SearchWrapper/SearchWrapper";
+import Search from "../Search/Search";
 import Nav from "../Nav/Nav";
 import User from "../User/User";
 import SearchBar from "../SearchBar/SearchBar";
@@ -34,9 +34,7 @@ function App() {
         <User />
         <Switch>
           <Route path="/search">
-            <SearchWrapper
-              trackedShows={trackedShows}
-              handleTrack={setTrackedShows}
+            <Search
               searchQuery={searchQuery}
               setSearchRequested={setSearchRequested}
             />
