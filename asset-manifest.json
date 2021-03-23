@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/tvshowtracker/static/css/main.08394ae9.chunk.css",
-    "main.js": "/tvshowtracker/static/js/main.146f408b.chunk.js",
-    "main.js.map": "/tvshowtracker/static/js/main.146f408b.chunk.js.map",
+    "main.css": "/tvshowtracker/static/css/main.ed4bd979.chunk.css",
+    "main.js": "/tvshowtracker/static/js/main.bd216e2a.chunk.js",
+    "main.js.map": "/tvshowtracker/static/js/main.bd216e2a.chunk.js.map",
     "runtime-main.js": "/tvshowtracker/static/js/runtime-main.95c07217.js",
     "runtime-main.js.map": "/tvshowtracker/static/js/runtime-main.95c07217.js.map",
-    "static/js/2.c68e29b8.chunk.js": "/tvshowtracker/static/js/2.c68e29b8.chunk.js",
-    "static/js/2.c68e29b8.chunk.js.map": "/tvshowtracker/static/js/2.c68e29b8.chunk.js.map",
+    "static/js/2.bf83d618.chunk.js": "/tvshowtracker/static/js/2.bf83d618.chunk.js",
+    "static/js/2.bf83d618.chunk.js.map": "/tvshowtracker/static/js/2.bf83d618.chunk.js.map",
     "index.html": "/tvshowtracker/index.html",
-    "static/css/main.08394ae9.chunk.css.map": "/tvshowtracker/static/css/main.08394ae9.chunk.css.map",
-    "static/js/2.c68e29b8.chunk.js.LICENSE.txt": "/tvshowtracker/static/js/2.c68e29b8.chunk.js.LICENSE.txt"
+    "static/css/main.ed4bd979.chunk.css.map": "/tvshowtracker/static/css/main.ed4bd979.chunk.css.map",
+    "static/js/2.bf83d618.chunk.js.LICENSE.txt": "/tvshowtracker/static/js/2.bf83d618.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.95c07217.js",
-    "static/js/2.c68e29b8.chunk.js",
-    "static/css/main.08394ae9.chunk.css",
-    "static/js/main.146f408b.chunk.js"
+    "static/js/2.bf83d618.chunk.js",
+    "static/css/main.ed4bd979.chunk.css",
+    "static/js/main.bd216e2a.chunk.js"
   ]
 }
