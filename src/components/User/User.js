@@ -27,10 +27,9 @@ const fetchAllEpisodesData = async (showIds) => {
         );
         let episodesData = await episodesResponse.json();
 
-        episodesData.forEach((episodeData) => {
+        episodesData = episodesData.map((episodeData) => {
           return { ...episodeData, show: showName, timezone: timezone };
         });
-
         fetchedData = [...fetchedData, ...episodesData];
       })
     );
@@ -108,6 +107,9 @@ function User({ trackedShows, handleTrack }) {
             <EpisodesWrapper
               showId={showData.id}
               timezone={showData.network?.country?.timezone}
+              episodesData={episodesData.filter(
+                (episode) => episode.show === showData.name
+              )}
               watchedEpisodes={watchedEpisodes}
               setWatchedEpisodes={setWatchedEpisodes}
             />
