@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { TrackedShowsContext } from "../Contexts/Contexts";
 
 function TrackShowButton(props) {
-  const { showId, trackedShows, handleTrack } = props;
+  const { showId } = props;
+  const { trackedShows, setTrackedShows } = useContext(TrackedShowsContext);
 
   return (
     <button
-      onClick={() => handleTrack(+showId)}
+      onClick={() => setTrackedShows(+showId)}
       className={`rounded-full h-8 w-8 border-2 ${
         trackedShows.includes(showId)
           ? "border-indigo-300 bg-indigo-300"

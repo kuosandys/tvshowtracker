@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { getTopGenres, getWatchTime } from "./helpers";
 import { useSessionState, stringDataReducer } from "../../helpers/helpers";
+import { WatchedEpisodesContext } from "../Contexts/Contexts";
 
-function Stats({ showsData, watchedEpisodes, episodesData }) {
+function Stats({ showsData, episodesData }) {
+  const { watchedEpisodes } = useContext(WatchedEpisodesContext);
   const [name, setName] = useSessionState(
     "username",
     stringDataReducer,

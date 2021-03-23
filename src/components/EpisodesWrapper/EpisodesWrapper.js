@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import { getSeasons } from "./helpers";
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import WatchedButton from "../WatchedButton/WatchedButton";
+import { WatchedEpisodesContext } from "../Contexts/Contexts";
 
-function EpisodesWrapper({
-  episodesData,
-  watchedEpisodes,
-  setWatchedEpisodes,
-}) {
+function EpisodesWrapper({ episodesData }) {
   const [seasonSelected, setSeasonSelected] = useState(1);
+
+  const { watchedEpisodes } = useContext(WatchedEpisodesContext);
 
   const seasons = getSeasons(episodesData);
 
@@ -40,11 +39,7 @@ function EpisodesWrapper({
               episode={episode}
               timezone={episode.timezone}
             >
-              <WatchedButton
-                episodeId={episode.id}
-                watched={watchedEpisodes.includes(episode.id) ? true : false}
-                handleWatch={setWatchedEpisodes}
-              ></WatchedButton>
+              <WatchedButton episodeId={episode.id}></WatchedButton>
             </EpisodeCard>
           );
         })}

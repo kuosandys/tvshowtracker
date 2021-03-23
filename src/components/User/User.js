@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
@@ -8,8 +8,13 @@ import Layout1 from "../Layout/Layout1";
 import Stats from "../Stats/Stats";
 import { fetchAllEpisodesData, fetchAllShowsData } from "./helpers";
 import { useSessionState, arrayDataReducer } from "../../helpers/helpers";
+import {
+  TrackedShowsContext,
+  WatchedEpisodesContext,
+} from "../Contexts/Contexts";
 
-function User({ trackedShows, handleTrack }) {
+function User() {
+  const { trackedShows } = useContext(TrackedShowsContext);
   const [watchedEpisodes, setWatchedEpisodes] = useSessionState(
     "watchedEpisodes",
     arrayDataReducer,
@@ -37,47 +42,39 @@ function User({ trackedShows, handleTrack }) {
   }, [trackedShows]);
 
   return (
-    <Switch>
-      <Route exact path="/shows">
-        <Layout1
-          child1={
-            <Stats
-              showsData={showsData}
-              watchedEpisodes={watchedEpisodes}
-              episodesData={episodesData}
-            />
-          }
-          child2={
-            <ShowsWrapper
-              trackedShows={trackedShows}
-              handleTrack={handleTrack}
-              showsData={showsData}
-            />
-          }
-        />
-      </Route>
+    <WatchedEpisodesContext.Provider
+      value={{ watchedEpisodes, setWatchedEpisodes }}
+    >
+      <Switch>
+        <Route exact path="/shows">
+          <Layout1
+            child1={<Stats showsData={showsData} episodesData={episodesData} />}
+            child2={<ShowsWrapper showsData={showsData} />}
+          />
+        </Route>
 
-      {showsData.map((showData) => {
-        return (
-          <Route exact path={`/shows/${showData.id}`} key={showData.id}>
-            <Layout1
-              child1={<ShowDetails show={showData} />}
-              child2={
-                <EpisodesWrapper
-                  showId={showData.id}
-                  timezone={showData.network?.country?.timezone}
-                  episodesData={episodesData.filter(
-                    (episode) => episode.show === showData.name
-                  )}
-                  watchedEpisodes={watchedEpisodes}
-                  setWatchedEpisodes={setWatchedEpisodes}
-                />
-              }
-            />
-          </Route>
-        );
-      })}
-    </Switch>
+        {showsData.map((showData) => {
+          return (
+            <Route exact path={`/shows/${showData.id}`} key={showData.id}>
+              <Layout1
+                child1={<ShowDetails show={showData} />}
+                child2={
+                  <EpisodesWrapper
+                    showId={showData.id}
+                    timezone={showData.network?.country?.timezone}
+                    episodesData={episodesData.filter(
+                      (episode) => episode.show === showData.name
+                    )}
+                    watchedEpisodes={watchedEpisodes}
+                    setWatchedEpisodes={setWatchedEpisodes}
+                  />
+                }
+              />
+            </Route>
+          );
+        })}
+      </Switch>
+    </WatchedEpisodesContext.Provider>
   );
 }
 

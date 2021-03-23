@@ -6,6 +6,7 @@ import Nav from "../Nav/Nav";
 import User from "../User/User";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSessionState, arrayDataReducer } from "../../helpers/helpers";
+import { TrackedShowsContext } from "../Contexts/Contexts";
 
 function App() {
   const [trackedShows, setTrackedShows] = useSessionState(
@@ -13,6 +14,7 @@ function App() {
     arrayDataReducer,
     []
   );
+
   const [searchQuery, setSearchQuery] = useState("");
   const [searchRequested, setSearchRequested] = useState(false);
 
@@ -27,18 +29,20 @@ function App() {
       <Nav>
         <SearchBar handleSubmitSearch={handleSubmitSearch} />
       </Nav>
-      {searchRequested && <Redirect to="/search" />}
-      <User trackedShows={trackedShows} handleTrack={setTrackedShows} />
-      <Switch>
-        <Route path="/search">
-          <SearchWrapper
-            trackedShows={trackedShows}
-            handleTrack={setTrackedShows}
-            searchQuery={searchQuery}
-            setSearchRequested={setSearchRequested}
-          />
-        </Route>
-      </Switch>
+      <TrackedShowsContext.Provider value={{ trackedShows, setTrackedShows }}>
+        {searchRequested && <Redirect to="/search" />}
+        <User />
+        <Switch>
+          <Route path="/search">
+            <SearchWrapper
+              trackedShows={trackedShows}
+              handleTrack={setTrackedShows}
+              searchQuery={searchQuery}
+              setSearchRequested={setSearchRequested}
+            />
+          </Route>
+        </Switch>
+      </TrackedShowsContext.Provider>
     </div>
   );
 }
