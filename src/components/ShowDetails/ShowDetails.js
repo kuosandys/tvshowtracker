@@ -13,6 +13,10 @@ function ShowDetails({ show }) {
         <section className="ml-10 my-auto">
           <h2 className="text-3xl font-medium my-5">{show.name}</h2>
           <h3>
+            <span className="text-indigo-200">Network: </span>
+            {show.network?.name || "None"}
+          </h3>
+          <h3>
             <span className="text-indigo-200">Country: </span>
             {show.network?.country?.name || "None"}
           </h3>
