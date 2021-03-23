@@ -34,11 +34,7 @@ function EpisodesWrapper({ episodesData }) {
         .filter((episode) => episode.season === seasonSelected)
         .map((episode) => {
           return (
-            <EpisodeCard
-              key={episode.id}
-              episode={episode}
-              timezone={episode.timezone}
-            >
+            <EpisodeCard key={episode.id} episode={episode}>
               <WatchedButton episodeId={episode.id}></WatchedButton>
             </EpisodeCard>
           );
