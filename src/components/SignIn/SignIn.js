@@ -1,0 +1,54 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const signInHandler = (event, email, password) => {
+    event.preventDefault();
+  };
+
+  const onInputChanged = (event) => {
+    const { name, value } = event.target;
+    if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={(event) => signInHandler(event)}>
+        <label htmlFor="email">Email: </label>
+        <input
+          type="email"
+          name="email"
+          placeholder="abcde@gmail.com"
+          id="email"
+          onChange={(event) => onInputChanged(event)}
+        >
+          {email}
+        </input>
+        <label htmlFor="password">Password: </label>
+        <input
+          type="password"
+          name="password"
+          placeholder="******"
+          id="password"
+          onChange={(event) => onInputChanged(event)}
+        >
+          {password}
+        </input>
+        <button type="submit">Sign In</button>
+      </form>
+      <p>or</p>
+      <button>Sign in with Google</button>
+      <p>Don't have an account yet?</p>
+      <Link to="/sign-up">Sign Up</Link>
+    </div>
+  );
+}
+
+export default SignIn;
