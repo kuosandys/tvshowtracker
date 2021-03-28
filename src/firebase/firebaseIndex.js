@@ -1,3 +1,7 @@
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTHDOMAIN,
@@ -9,4 +13,16 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-export default firebaseConfig;
+// Init firebase app
+firebase.initializeApp(firebaseConfig);
+
+// auth
+const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
+const signInWithGoogle = () => {
+  auth.signInWithPopup(provider);
+};
+
+const firestore = firebase.firestore();
+
+export { auth, firestore, signInWithGoogle };
