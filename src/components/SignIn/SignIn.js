@@ -30,19 +30,16 @@ function SignIn() {
           placeholder="abcde@gmail.com"
           id="email"
           onChange={(event) => onInputChanged(event)}
-        >
-          {email}
-        </input>
+          value={email}
+        />
         <label htmlFor="password">Password: </label>
         <input
           type="password"
           name="password"
-          placeholder="******"
           id="password"
           onChange={(event) => onInputChanged(event)}
-        >
-          {password}
-        </input>
+          value={password}
+        />
         <button type="submit">Sign In</button>
       </form>
       <p>or</p>

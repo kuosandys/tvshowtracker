@@ -36,7 +36,8 @@ function SignUp() {
           placeholder="Abcde"
           id="displayName"
           onChange={(event) => onInputChanged(event)}
-        ></input>
+          value={displayName}
+        />
         <label htmlFor="email">Email: </label>
         <input
           type="email"
@@ -44,15 +45,16 @@ function SignUp() {
           placeholder="abcde@gmail.com"
           id="email"
           onChange={(event) => onInputChanged(event)}
-        ></input>
+          value={email}
+        />
         <label htmlFor="password">Password: </label>
         <input
           type="password"
           name="password"
-          placeholder="******"
           id="password"
           onChange={(event) => onInputChanged(event)}
-        ></input>
+          value={password}
+        />
         <button type="submit">Sign In</button>
       </form>
       <p>or</p>
