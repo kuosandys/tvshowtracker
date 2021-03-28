@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { signInWithGoogle, auth } from "../../firebase/firebaseIndex";
 
@@ -7,13 +7,16 @@ function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
-  const signInHandler = (event, email, password) => {
+  const signInHandler = (event) => {
     event.preventDefault();
     try {
       auth.signInWithEmailAndPassword(email, password);
+      setIsSignedIn(true);
     } catch (error) {
-      setErrorMessage("Error signing in with email and password");
+      console.log(error);
+      setErrorMessage(error.message);
     }
   };
 
@@ -28,6 +31,7 @@ function SignIn() {
 
   return (
     <div>
+      {isSignedIn && <Redirect to="/shows" />}
       <p>{errorMessage}</p>
       <form onSubmit={(event) => signInHandler(event)}>
         <label htmlFor="email">Email: </label>
