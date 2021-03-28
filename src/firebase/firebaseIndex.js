@@ -32,7 +32,7 @@ const generateUserDocument = async (user, data) => {
   }
 
   // get user document
-  const userReference = firestore.doc(`users/${user.userId}`);
+  const userReference = firestore.collection("users").doc(user.email);
   const snapshot = await userReference.get();
 
   // If no document exists for user, create document
