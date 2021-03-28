@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import Layout2 from "../Layout/Layout2";
+
 import {
   auth,
   generateUserDocument,
@@ -11,9 +13,9 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [displayMessage, setDisplayMessage] = useState("");
 
-  const createUserHandler = async (event, email, password) => {
+  const createUserHandler = async (event) => {
     event.preventDefault();
     try {
       const { user } = await auth.createUserWithEmailAndPassword(
@@ -21,8 +23,9 @@ function SignUp() {
         password
       );
       generateUserDocument(user, { displayName });
+      setDisplayMessage("You've successfully Signed Up!");
     } catch (error) {
-      setErrorMessage("Error signing up with email and password");
+      setDisplayMessage(error.message);
     }
 
     // reset fields
@@ -37,14 +40,14 @@ function SignUp() {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
-    } else if (name === "username") {
+    } else if (name === "displayName") {
       setDisplayName(value);
     }
   };
 
   return (
-    <div>
-      <p>{errorMessage}</p>
+    <Layout2>
+      <p>{displayMessage}</p>
       <form onSubmit={(event) => createUserHandler(event)}>
         <label htmlFor="displayName">Username: </label>
         <input
@@ -78,7 +81,7 @@ function SignUp() {
       <button onClick={signInWithGoogle}>Sign in with Google</button>
       <p>Already have an account?</p>
       <Link to="/sign-in">Sign In</Link>
-    </div>
+    </Layout2>
   );
 }
 
