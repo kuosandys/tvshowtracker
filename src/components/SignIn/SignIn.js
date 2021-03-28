@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { signInWithGoogle } from "../../firebase/firebaseIndex";
+import { signInWithGoogle, auth } from "../../firebase/firebaseIndex";
 
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const signInHandler = (event, email, password) => {
     event.preventDefault();
+    try {
+      auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      setErrorMessage("Error signing in with email and password");
+    }
   };
 
   const onInputChanged = (event) => {
@@ -22,6 +28,7 @@ function SignIn() {
 
   return (
     <div>
+      <p>{errorMessage}</p>
       <form onSubmit={(event) => signInHandler(event)}>
         <label htmlFor="email">Email: </label>
         <input
