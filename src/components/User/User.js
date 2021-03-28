@@ -14,7 +14,7 @@ import { useSessionState, arrayDataReducer } from "../../helpers/helpers";
 import {
   TrackedShowsContext,
   WatchedEpisodesContext,
-} from "../Contexts/Contexts";
+} from "../ContextProviders/Contexts";
 
 function User() {
   const { trackedShows } = useContext(TrackedShowsContext);

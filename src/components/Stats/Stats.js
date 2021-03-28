@@ -4,7 +4,7 @@ import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { getTopGenres, getWatchTime } from "./helpers";
 import { useSessionState, stringDataReducer } from "../../helpers/helpers";
-import { WatchedEpisodesContext } from "../Contexts/Contexts";
+import { WatchedEpisodesContext } from "../ContextProviders/Contexts";
 
 function Stats({ showsData, episodesData }) {
   const { watchedEpisodes } = useContext(WatchedEpisodesContext);

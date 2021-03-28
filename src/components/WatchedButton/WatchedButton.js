@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-import { WatchedEpisodesContext } from "../Contexts/Contexts";
+import { WatchedEpisodesContext } from "../ContextProviders/Contexts";
 
 function WatchedButton({ episodeId }) {
   const { watchedEpisodes, setWatchedEpisodes } = useContext(
