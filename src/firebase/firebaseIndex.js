@@ -5,7 +5,6 @@ import "firebase/firestore";
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTHDOMAIN,
-  databaseURL: process.env.REACT_APP_BASEURL,
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
@@ -19,10 +18,36 @@ firebase.initializeApp(firebaseConfig);
 // auth
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
+
 const signInWithGoogle = () => {
   auth.signInWithPopup(provider);
 };
 
+// firestore
 const firestore = firebase.firestore();
 
-export { auth, firestore, signInWithGoogle };
+const generateUserDocument = async (user, data) => {
+  if (!user) {
+    return;
+  }
+
+  // get user document
+  const userReference = firestore.doc(`users/${user.userId}`);
+  const snapshot = await userReference.get();
+
+  // If no document exists for user, create document
+  if (!snapshot.exists) {
+    const { email, displayName } = user;
+    try {
+      await userReference.set({
+        displayName,
+        email,
+        ...data,
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
+};
+
+export { auth, firestore, signInWithGoogle, generateUserDocument };
