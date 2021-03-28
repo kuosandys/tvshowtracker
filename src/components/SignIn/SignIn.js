@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { signInWithGoogle } from "../../firebase/firebaseIndex";
+
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,7 +46,7 @@ function SignIn() {
         <button type="submit">Sign In</button>
       </form>
       <p>or</p>
-      <button>Sign in with Google</button>
+      <button onClick={signInWithGoogle}>Sign in with Google</button>
       <p>Don't have an account yet?</p>
       <Link to="/sign-up">Sign Up</Link>
     </div>
