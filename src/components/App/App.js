@@ -8,17 +8,11 @@ import SearchBar from "../SearchBar/SearchBar";
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp";
 
-import { useSessionState, arrayDataReducer } from "../../helpers/helpers";
-import { TrackedShowsContext } from "../ContextProviders/Contexts";
+import { TrackedShowsContextProvider } from "../ContextProviders/TrackedShowsContextProvider";
 import { UserContextProvider } from "../ContextProviders/UserContextProvider";
+import { WatchedEpisodesContextProvider } from "../ContextProviders/WatchedEpisodesContextProvider";
 
 function App() {
-  const [trackedShows, setTrackedShows] = useSessionState(
-    "trackedShows",
-    arrayDataReducer,
-    []
-  );
-
   const [searchQuery, setSearchQuery] = useState("");
   const [searchRequested, setSearchRequested] = useState(false);
 
@@ -34,9 +28,11 @@ function App() {
         <Nav>
           <SearchBar handleSubmitSearch={handleSubmitSearch} />
         </Nav>
-        <TrackedShowsContext.Provider value={{ trackedShows, setTrackedShows }}>
+        <TrackedShowsContextProvider>
           {searchRequested && <Redirect to="/search" />}
-          <User />
+          <WatchedEpisodesContextProvider>
+            <User />
+          </WatchedEpisodesContextProvider>
           <Switch>
             <Route path="/search">
               <Search
@@ -51,7 +47,7 @@ function App() {
               <SignIn />
             </Route>
           </Switch>
-        </TrackedShowsContext.Provider>
+        </TrackedShowsContextProvider>
       </div>
     </UserContextProvider>
   );
