@@ -13,7 +13,7 @@ function Nav({ children }) {
           <Link to="/">Home</Link>
         </li>
         <li className="mx-5 font-bold hover:underline">
-          <Link to="/shows">{user ? `${user.displayName}'s` : "My"} Shows</Link>
+          <Link to="/shows">My Shows</Link>
         </li>
         {user ? (
           <button onClick={() => auth.signOut()}>Sign Out</button>
