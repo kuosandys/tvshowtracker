@@ -1,15 +1,31 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { signInWithGoogle } from "../../firebase/firebaseIndex";
+import {
+  auth,
+  generateUserDocument,
+  signInWithGoogle,
+} from "../../firebase/firebaseIndex";
 
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const createUserHandler = (event, email, password) => {
+  const createUserHandler = async (event, email, password) => {
     event.preventDefault();
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      generateUserDocument(user, { displayName });
+    } catch (error) {
+      setErrorMessage("Error signing up with email and password");
+    }
+
+    // reset fields
     setEmail("");
     setPassword("");
     setDisplayName("");
@@ -28,6 +44,7 @@ function SignUp() {
 
   return (
     <div>
+      <p>{errorMessage}</p>
       <form onSubmit={(event) => createUserHandler(event)}>
         <label htmlFor="displayName">Username: </label>
         <input
