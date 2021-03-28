@@ -55,7 +55,7 @@ function SignUp() {
           onChange={(event) => onInputChanged(event)}
           value={password}
         />
-        <button type="submit">Sign In</button>
+        <button type="submit">Sign Up</button>
       </form>
       <p>or</p>
       <button onClick={signInWithGoogle}>Sign in with Google</button>
