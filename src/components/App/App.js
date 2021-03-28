@@ -6,7 +6,7 @@ import Nav from "../Nav/Nav";
 import User from "../User/User";
 import SearchBar from "../SearchBar/SearchBar";
 import { useSessionState, arrayDataReducer } from "../../helpers/helpers";
-import { TrackedShowsContext } from "../Contexts/Contexts";
+import { UserContext, TrackedShowsContext } from "../ContextProviders/Contexts";
 
 function App() {
   const [trackedShows, setTrackedShows] = useSessionState(
@@ -17,6 +17,7 @@ function App() {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchRequested, setSearchRequested] = useState(false);
+  const user = null;
 
   const handleSubmitSearch = (e, currentSearchInput) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ function App() {
 
   return (
     <div className="px-10 pt-10 font-sans font-extralight bg-gray-100 h-full min-h-screen text-lg">
-      <Nav>
+      <Nav user={user}>
         <SearchBar handleSubmitSearch={handleSubmitSearch} />
       </Nav>
       <TrackedShowsContext.Provider value={{ trackedShows, setTrackedShows }}>
