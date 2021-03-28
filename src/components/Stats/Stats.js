@@ -4,7 +4,7 @@ import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { getTopGenres, getWatchTime } from "./helpers";
 import { useSessionState, stringDataReducer } from "../../helpers/helpers";
-import { WatchedEpisodesContext } from "../ContextProviders/Contexts";
+import { WatchedEpisodesContext } from "../ContextProviders/WatchedEpisodesContextProvider";
 import { UserContext } from "../ContextProviders/UserContextProvider";
 
 function Stats({ showsData, episodesData }) {
@@ -28,7 +28,7 @@ function Stats({ showsData, episodesData }) {
         {user ? (
           <h1>{user.displayName}!</h1>
         ) : (
-          <div>
+          <div className="flex text-2xl justify-center items-center">
             {inputEditable ? (
               <input
                 onChange={(e) => setName(e.target.value)}
