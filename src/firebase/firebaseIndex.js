@@ -26,6 +26,24 @@ const signInWithGoogle = () => {
 // firestore
 const firestore = firebase.firestore();
 
+const getUserDocument = async (userEmail) => {
+  if (!userEmail) {
+    return null;
+  }
+
+  try {
+    const userDocument = await firestore
+      .collection("users")
+      .doc(userEmail)
+      .get();
+    return {
+      ...userDocument.data(),
+    };
+  } catch (error) {
+    console.log("Error getting user data", error);
+  }
+};
+
 const generateUserDocument = async (user, data) => {
   if (!user) {
     return;
@@ -48,6 +66,7 @@ const generateUserDocument = async (user, data) => {
       alert(error);
     }
   }
+  return getUserDocument(user.email);
 };
 
 export { auth, firestore, signInWithGoogle, generateUserDocument };

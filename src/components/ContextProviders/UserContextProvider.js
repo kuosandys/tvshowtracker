@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { auth } from "../../firebase/firebaseIndex";
+import { auth, generateUserDocument } from "../../firebase/firebaseIndex";
 
 export const UserContext = createContext();
 
@@ -8,7 +8,13 @@ export function UserContextProvider({ children }) {
 
   // listener for current user with Firebase API
   useEffect(() => {
-    auth.onAuthStateChanged((user) => setUser(user));
+    const getCurrentUser = async () => {
+      auth.onAuthStateChanged(async (userAuth) => {
+        const user = await generateUserDocument(userAuth);
+        setUser(user);
+      });
+    };
+    getCurrentUser();
   }, []);
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
