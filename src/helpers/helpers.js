@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from "react";
+import { generateUserDocument } from "../firebase/firebaseIndex";
 
 export const arrayDataReducer = (state, item) => {
   if (state.includes(item)) {
@@ -25,6 +26,19 @@ export const useSessionState = (sessionStorageKey, reducer, initialState) => {
   useEffect(() => {
     sessionStorage.setItem(sessionStorageKey, JSON.stringify(data));
   }, [data, sessionStorageKey]);
+
+  return [data, setData];
+};
+
+// Get/Set state with reducer function, using firebase
+export const useFirebaseState = (user, key) => {
+  const [data, setData] = useReducer(arrayDataReducer, user[key]);
+  console.log(user[key]);
+  console.log(data);
+
+  useEffect(() => {
+    generateUserDocument(user, { [key]: data });
+  }, [data, key, user]);
 
   return [data, setData];
 };
