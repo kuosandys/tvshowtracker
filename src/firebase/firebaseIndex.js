@@ -46,27 +46,30 @@ const getUserDocument = async (userEmail) => {
 
 const generateUserDocument = async (user, data) => {
   if (!user) {
-    return;
+    return null;
   }
 
   // get user document
   const userReference = firestore.collection("users").doc(user.email);
-  const snapshot = await userReference.get();
-
-  // If no document exists for user, create document
-  if (!snapshot.exists) {
-    const { email, displayName } = user;
-    try {
-      await userReference.set({
-        displayName,
+  const { email } = user;
+  try {
+    await userReference.set(
+      {
         email,
         ...data,
-      });
-    } catch (error) {
-      alert(error);
-    }
+      },
+      { merge: true }
+    );
+  } catch (error) {
+    console.log("Error generating user data", error);
   }
   return getUserDocument(user.email);
 };
 
-export { auth, firestore, signInWithGoogle, generateUserDocument };
+export {
+  auth,
+  firestore,
+  signInWithGoogle,
+  generateUserDocument,
+  getUserDocument,
+};
