@@ -17,6 +17,7 @@ function EpisodesWrapper({ episodesData }) {
         {seasons.map((season) => {
           return (
             <li
+              key={season}
               onClick={() => setSeasonSelected(season)}
               className={`bg-white ${
                 season === seasonSelected && seasonSelectedClass
