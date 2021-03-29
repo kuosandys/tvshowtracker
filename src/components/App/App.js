@@ -29,24 +29,24 @@ function App() {
           <SearchBar handleSubmitSearch={handleSubmitSearch} />
         </Nav>
         <TrackedShowsContextProvider>
-          {searchRequested && <Redirect to="/search" />}
           <WatchedEpisodesContextProvider>
+            {searchRequested && <Redirect to="/search" />}
             <User />
+            <Switch>
+              <Route path="/search">
+                <Search
+                  searchQuery={searchQuery}
+                  setSearchRequested={setSearchRequested}
+                />
+              </Route>
+              <Route path="/sign-up">
+                <SignUp />
+              </Route>
+              <Route path="/sign-in">
+                <SignIn />
+              </Route>
+            </Switch>
           </WatchedEpisodesContextProvider>
-          <Switch>
-            <Route path="/search">
-              <Search
-                searchQuery={searchQuery}
-                setSearchRequested={setSearchRequested}
-              />
-            </Route>
-            <Route path="/sign-up">
-              <SignUp />
-            </Route>
-            <Route path="/sign-in">
-              <SignIn />
-            </Route>
-          </Switch>
         </TrackedShowsContextProvider>
       </div>
     </UserContextProvider>
