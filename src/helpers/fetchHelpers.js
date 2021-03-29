@@ -26,7 +26,7 @@ export const fetchAllEpisodesData = async (showIds) => {
     );
     return fetchedData;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
 
@@ -43,6 +43,6 @@ export const fetchAllShowsData = async (showIds) => {
     );
     return fetchedData;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };

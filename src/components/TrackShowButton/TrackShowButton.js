@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { TrackedShowsContext } from "../Contexts/Contexts";
+import { TrackedShowsContext } from "../ContextProviders/TrackedShowsContextProvider";
 
 function TrackShowButton(props) {
   const { showId } = props;
