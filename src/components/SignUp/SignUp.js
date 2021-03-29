@@ -1,19 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import Layout2 from "../Layout/Layout2";
+
+import { WatchedEpisodesContext } from "../ContextProviders/WatchedEpisodesContextProvider";
+import { TrackedShowsContext } from "../ContextProviders/TrackedShowsContextProvider";
 
 import {
   auth,
   generateUserDocument,
   signInWithGoogle,
 } from "../../firebase/firebaseIndex";
+import { useContext } from "react/cjs/react.development";
 
 function SignUp() {
+  const { watchedEpisodes } = useContext(WatchedEpisodesContext);
+  const { trackedShows } = useContext(TrackedShowsContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [displayMessage, setDisplayMessage] = useState("");
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const createUserHandler = async (event) => {
     event.preventDefault();
@@ -22,8 +29,16 @@ function SignUp() {
         email,
         password
       );
-      generateUserDocument(user, { displayName });
+      let data = {
+        displayName,
+        trackedShows,
+        watchedEpisodes,
+      };
+      generateUserDocument(user, data);
       setDisplayMessage("You've successfully Signed Up!");
+      setIsSignedIn(true);
+      sessionStorage.removeItem("watchedEpisodes");
+      sessionStorage.removeItem("trackedShows");
     } catch (error) {
       setDisplayMessage(error.message);
     }
@@ -47,6 +62,7 @@ function SignUp() {
 
   return (
     <Layout2>
+      {isSignedIn && <Redirect to="/shows" />}
       <p>{displayMessage}</p>
       <form onSubmit={(event) => createUserHandler(event)}>
         <label htmlFor="displayName">Username: </label>
