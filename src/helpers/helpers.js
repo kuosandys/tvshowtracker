@@ -32,9 +32,7 @@ export const useSessionState = (sessionStorageKey, reducer, initialState) => {
 
 // Get/Set state with reducer function, using firebase
 export const useFirebaseState = (user, key) => {
-  const [data, setData] = useReducer(arrayDataReducer, user[key]);
-  console.log(user[key]);
-  console.log(data);
+  const [data, setData] = useReducer(arrayDataReducer, user[key] || []);
 
   useEffect(() => {
     generateUserDocument(user, { [key]: data });
