@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import { signInWithGoogle, auth } from "../../firebase/firebaseIndex";
+import Layout2 from "../Layout/Layout2";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -9,13 +10,12 @@ function SignIn() {
   const [errorMessage, setErrorMessage] = useState("");
   const [isSignedIn, setIsSignedIn] = useState(false);
 
-  const signInHandler = (event) => {
+  const signInHandler = async (event) => {
     event.preventDefault();
     try {
-      auth.signInWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password);
       setIsSignedIn(true);
     } catch (error) {
-      console.log(error);
       setErrorMessage(error.message);
     }
   };
@@ -30,7 +30,7 @@ function SignIn() {
   };
 
   return (
-    <div>
+    <Layout2>
       {isSignedIn && <Redirect to="/shows" />}
       <p>{errorMessage}</p>
       <form onSubmit={(event) => signInHandler(event)}>
@@ -57,7 +57,7 @@ function SignIn() {
       <button onClick={signInWithGoogle}>Sign in with Google</button>
       <p>Don't have an account yet?</p>
       <Link to="/sign-up">Sign Up</Link>
-    </div>
+    </Layout2>
   );
 }
 
