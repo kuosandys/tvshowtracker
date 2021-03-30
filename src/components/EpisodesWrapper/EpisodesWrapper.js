@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import { getSeasons } from "../../helpers/dataHelpers";
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
-import WatchedButton from "../WatchedButton/WatchedButton";
 
 function EpisodesWrapper({ episodesData }) {
   const [seasonSelected, setSeasonSelected] = useState(1);
@@ -31,11 +30,7 @@ function EpisodesWrapper({ episodesData }) {
       {episodesData
         .filter((episode) => episode.season === seasonSelected)
         .map((episode) => {
-          return (
-            <EpisodeCard key={episode.id} episode={episode}>
-              <WatchedButton episodeId={episode.id}></WatchedButton>
-            </EpisodeCard>
-          );
+          return <EpisodeCard key={episode.id} episode={episode} />;
         })}
     </div>
   );
