@@ -33,7 +33,7 @@ function SignIn() {
     <Layout2>
       {isSignedIn && <Redirect to="/shows" />}
       <p>{errorMessage}</p>
-      <form onSubmit={(event) => signInHandler(event)}>
+      <form method="POST" onSubmit={(event) => signInHandler(event)}>
         <label htmlFor="email">Email: </label>
         <input
           type="email"

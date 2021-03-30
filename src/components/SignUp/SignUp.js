@@ -64,7 +64,7 @@ function SignUp() {
     <Layout2>
       {isSignedIn && <Redirect to="/shows" />}
       <p>{displayMessage}</p>
-      <form onSubmit={(event) => createUserHandler(event)}>
+      <form method="POST" onSubmit={(event) => createUserHandler(event)}>
         <label htmlFor="displayName">Username: </label>
         <input
           type="text"
