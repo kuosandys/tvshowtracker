@@ -1,20 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-import { WatchedEpisodesContext } from "../ContextProviders/WatchedEpisodesContextProvider";
-
-function WatchedButton({ episodeId }) {
-  const { watchedEpisodes, setWatchedEpisodes } = useContext(
-    WatchedEpisodesContext
-  );
-
-  // For styling - determines whether the episode has been watched or not
-  const isWatched = watchedEpisodes.includes(episodeId);
-
+function WatchedButton({ isWatched, onClickHandler }) {
   return (
     <button
-      onClick={() => setWatchedEpisodes(+episodeId)}
+      onClick={onClickHandler}
       className={`h-6 w-6 border-2 rounded-full border-indigo-800 ${
         isWatched && "bg-indigo-200"
       }`}

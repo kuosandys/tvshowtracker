@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 import EpisodeDetails from "../EpisodeDetails/EpisodeDetails";
-import WatchedButton from "../WatchedButton/WatchedButton";
+import ToggleEpisodeWatched from "../ToggleEpisodeWatched/ToggleEpisodeWatched";
 import { isUpcomingEpisode } from "./helpers";
 
 function EpisodeCard(props) {
@@ -16,7 +16,7 @@ function EpisodeCard(props) {
     <div className="border-t-2 border-gray-200 flex flex-col -my-0.5">
       <div className="flex justify-between items-center px-5 pt-1">
         <div className="flex items-center flex-grow flex-nowrap">
-          <WatchedButton episodeId={episode.id} />
+          <ToggleEpisodeWatched episodeId={episode.id} />
           <h3 className="ml-6 mr-2 w-24">Episode {episode.number}</h3>
           <h2 className="font-bold text-lg truncate">{episode.name}</h2>
         </div>
