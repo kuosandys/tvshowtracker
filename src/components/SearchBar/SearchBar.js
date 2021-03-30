@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 
+import PrimaryButton from "../StyleComponents/PrimaryButton";
+
 function SearchBar({ handleSubmitSearch }) {
   const [searchInput, setSearchInput] = useState("");
   const inputRef = useRef(null);
@@ -17,12 +19,7 @@ function SearchBar({ handleSubmitSearch }) {
         className="mx-3 px-3 rounded text-gray-900"
         ref={inputRef}
       ></input>
-      <button
-        type="submit"
-        className="bg-indigo-300 hover:bg-indigo-400 rounded px-3 py-1.5 mx-3"
-      >
-        Search
-      </button>
+      <PrimaryButton type="submit">Search</PrimaryButton>
     </form>
   );
 }

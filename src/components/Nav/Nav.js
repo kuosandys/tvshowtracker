@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebaseIndex";
 
 import { UserContext } from "../ContextProviders/UserContextProvider";
+import PrimaryButton from "../StyleComponents/PrimaryButton";
 
 function Nav({ children }) {
   const user = useContext(UserContext);
@@ -12,16 +13,17 @@ function Nav({ children }) {
         <li className="mx-5 font-bold hover:underline">
           <Link to="/">Home</Link>
         </li>
-        <li className="mx-5 font-bold hover:underline">
-          <Link to="/shows">My Shows</Link>
-        </li>
-        {user ? (
-          <button onClick={() => auth.signOut()}>Sign Out</button>
-        ) : (
-          <Link to="sign-up">Sign Up</Link>
-        )}
       </ul>
       {children}
+      {user ? (
+        <Link to="/">
+          <PrimaryButton onClick={() => auth.signOut()}>Sign Out</PrimaryButton>
+        </Link>
+      ) : (
+        <Link to="/sign-in">
+          <PrimaryButton>Sign In</PrimaryButton>
+        </Link>
+      )}
     </div>
   );
 }
