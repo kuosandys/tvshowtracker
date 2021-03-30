@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
-import Layout1 from "../Layout/Layout1";
+import Layout1 from "../StyleComponents/Layout1";
 import Stats from "../Stats/Stats";
 
 import {

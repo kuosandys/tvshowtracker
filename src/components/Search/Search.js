@@ -3,8 +3,8 @@ import { Switch, Route } from "react-router-dom";
 
 import SearchWrapper from "../SearchWrapper/SearchWrapper";
 import SearchDetails from "../SearchDetails/SearchDetails";
-import Layout2 from "../Layout/Layout2";
-import Layout1 from "../Layout/Layout1";
+import Layout2 from "../StyleComponents/Layout2";
+import Layout1 from "../StyleComponents/Layout1";
 
 function Search({ searchQuery, setSearchRequested }) {
   const [searchResults, setSearchResults] = useState([]);

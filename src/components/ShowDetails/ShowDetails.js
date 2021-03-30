@@ -4,7 +4,7 @@ import React from "react";
 function ShowDetails({ show }) {
   return (
     <div>
-      <div className="ml-10 flex">
+      <div className="flex">
         <img
           src={show.image?.medium}
           alt="TV show poster"
@@ -41,7 +41,7 @@ function ShowDetails({ show }) {
       <section>
         <p
           dangerouslySetInnerHTML={{ __html: show.summary }}
-          className="my-5 mx-10 leading-relaxed"
+          className="mt-5 leading-relaxed"
         ></p>
       </section>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 import ShowCard from "../ShowCard/ShowCard";
 import TrackShowButton from "../TrackShowButton/TrackShowButton";
-import Layout2 from "../Layout/Layout2";
+import Layout2 from "../StyleComponents/Layout2";
 
 function SearchWrapper({ searchResults }) {
   return (

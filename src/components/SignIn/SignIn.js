@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 
 import { signInWithGoogle, auth } from "../../firebase/firebaseIndex";
-import Layout2 from "../Layout/Layout2";
+import Layout2 from "../StyleComponents/Layout2";
 
 function SignIn() {
   const [email, setEmail] = useState("");

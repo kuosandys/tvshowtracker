@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 
-import Layout2 from "../Layout/Layout2";
+import Layout2 from "../StyleComponents/Layout2";
 
 import { WatchedEpisodesContext } from "../ContextProviders/WatchedEpisodesContextProvider";
 import { TrackedShowsContext } from "../ContextProviders/TrackedShowsContextProvider";
+import { UserContext } from "../ContextProviders/UserContextProvider";
 
 import {
   auth,
   generateUserDocument,
   signInWithGoogle,
 } from "../../firebase/firebaseIndex";
-import { useContext } from "react/cjs/react.development";
 
 function SignUp() {
   const { watchedEpisodes } = useContext(WatchedEpisodesContext);
   const { trackedShows } = useContext(TrackedShowsContext);
+  const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -37,6 +38,7 @@ function SignUp() {
       generateUserDocument(user, data);
       setDisplayMessage("You've successfully Signed Up!");
       setIsSignedIn(true);
+      setUser(null);
       sessionStorage.removeItem("watchedEpisodes");
       sessionStorage.removeItem("trackedShows");
     } catch (error) {
