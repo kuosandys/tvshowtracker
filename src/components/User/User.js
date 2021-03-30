@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import ShowsWrapper from "../ShowsWrapper/ShowsWrapper";
 import ShowDetails from "../ShowDetails/ShowDetails";
 import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
 import Layout1 from "../StyleComponents/Layout1";
+import Loading from "../StyleComponents/Loading";
 import Stats from "../Stats/Stats";
 
 import {
@@ -12,12 +13,24 @@ import {
   fetchAllShowsData,
 } from "../../helpers/fetchHelpers";
 import { TrackedShowsContext } from "../ContextProviders/TrackedShowsContextProvider";
+import { UserContext } from "../ContextProviders/UserContextProvider";
 
 function User() {
   const { trackedShows } = useContext(TrackedShowsContext);
+  const user = useContext(UserContext);
 
   const [showsData, setShowsData] = useState([]);
   const [episodesData, setEpisodesData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   // Get all episodes data
   useEffect(() => {
@@ -39,7 +52,12 @@ function User() {
 
   return (
     <Switch>
+      <Route exact path="/">
+        {user && <Redirect to="/shows" />}
+      </Route>
       <Route exact path="/shows">
+        {!user && <Redirect to="/" />}
+        {isLoading && <Loading />}
         <Layout1
           child1={<Stats showsData={showsData} episodesData={episodesData} />}
           child2={<ShowsWrapper showsData={showsData} />}
