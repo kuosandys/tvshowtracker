@@ -33,7 +33,7 @@ function Search({ searchQuery, setSearchRequested }) {
     <Switch>
       <Route exact path="/search">
         <Layout2>
-          <p className="text-center italic">
+          <p className="text-center italic mt-10">
             Search results for "{searchQuery}"
           </p>
           <SearchWrapper searchResults={searchResults} />
