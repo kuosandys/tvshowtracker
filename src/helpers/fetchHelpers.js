@@ -7,7 +7,9 @@ export const fetchAllEpisodesData = async (showIds) => {
       showIds.map(async (showId) => {
         // Episodes data returned from TVmaze API does not have show name or timezone
         // We add it as an extra field to each episode
-        let showResponse = await fetch(`http://api.tvmaze.com/shows/${showId}`);
+        let showResponse = await fetch(
+          `https://api.tvmaze.com/shows/${showId}`
+        );
         let showData = await showResponse.json();
         let showName = showData.name;
         let timezone = showData.network?.country?.timezone;
