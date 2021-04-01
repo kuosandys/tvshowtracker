@@ -24,7 +24,7 @@ function App() {
 
   return (
     <UserContextProvider>
-      <div className="px-10 pt-10 font-sans font-extralight bg-gray-100 h-full min-h-screen text-lg flex justify-center">
+      <div className="md:px-2 lg:px-10 sm:px-0 font-sans font-extralight bg-gray-100 h-full min-h-screen text-lg flex justify-center">
         <Nav>
           <SearchBar handleSubmitSearch={handleSubmitSearch} />
         </Nav>
