@@ -4146,6 +4146,10 @@ video {
   background-color: rgba(131, 24, 67, var(--tw-bg-opacity));
 }
 
+.bg-tv-image {
+  background-image: url("/src/assets/bg-image.png");
+}
+
 .bg-none {
   background-image: none;
 }
@@ -32743,6 +32747,10 @@ video {
     background-color: rgba(131, 24, 67, var(--tw-bg-opacity));
   }
 
+  .sm\:bg-tv-image {
+    background-image: url("/src/assets/bg-image.png");
+  }
+
   .sm\:bg-none {
     background-image: none;
   }
@@ -61295,6 +61303,10 @@ video {
   .md\:focus\:bg-pink-900:focus {
     --tw-bg-opacity: 1;
     background-color: rgba(131, 24, 67, var(--tw-bg-opacity));
+  }
+
+  .md\:bg-tv-image {
+    background-image: url("/src/assets/bg-image.png");
   }
 
   .md\:bg-none {
@@ -89851,6 +89863,10 @@ video {
     background-color: rgba(131, 24, 67, var(--tw-bg-opacity));
   }
 
+  .lg\:bg-tv-image {
+    background-image: url("/src/assets/bg-image.png");
+  }
+
   .lg\:bg-none {
     background-image: none;
   }
@@ -118405,6 +118421,10 @@ video {
     background-color: rgba(131, 24, 67, var(--tw-bg-opacity));
   }
 
+  .xl\:bg-tv-image {
+    background-image: url("/src/assets/bg-image.png");
+  }
+
   .xl\:bg-none {
     background-image: none;
   }
@@ -146957,6 +146977,10 @@ video {
   .\32xl\:focus\:bg-pink-900:focus {
     --tw-bg-opacity: 1;
     background-color: rgba(131, 24, 67, var(--tw-bg-opacity));
+  }
+
+  .\32xl\:bg-tv-image {
+    background-image: url("/src/assets/bg-image.png");
   }
 
   .\32xl\:bg-none {

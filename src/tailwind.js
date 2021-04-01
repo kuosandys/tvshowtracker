@@ -73,6 +73,7 @@ module.exports = {
     },
     backgroundColor: (theme) => theme("colors"),
     backgroundImage: {
+      "tv-image": 'url("/src/assets/bg-image.png")',
       none: "none",
       "gradient-to-t": "linear-gradient(to top, var(--tw-gradient-stops))",
       "gradient-to-tr":

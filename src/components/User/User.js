@@ -7,6 +7,7 @@ import EpisodesWrapper from "../EpisodesWrapper/EpisodesWrapper";
 import Layout1 from "../StyleComponents/Layout1";
 import Loading from "../StyleComponents/Loading";
 import Stats from "../Stats/Stats";
+import HomePage from "../HomePage/HomePage";
 
 import {
   fetchAllEpisodesData,
@@ -23,6 +24,7 @@ function User() {
   const [episodesData, setEpisodesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Loading effect for UI while waiting for API calls to resolve
   useEffect(() => {
     let timer = setTimeout(() => {
       setIsLoading(false);
@@ -53,10 +55,14 @@ function User() {
   return (
     <Switch>
       <Route exact path="/">
-        {user && <Redirect to="/shows" />}
+        {/* If user logged in, or there is data for tracked shows, redirect Home page to Shows page*/}
+        {(user || trackedShows?.length > 0) && <Redirect to="/shows" />}
+        <HomePage />
       </Route>
+
       <Route exact path="/shows">
-        {!user && <Redirect to="/" />}
+        {/* If there is no user logged in and no tracked shows, redirect Shows page to Home page*/}
+        {!user && trackedShows?.length === 0 && <Redirect to="/" />}
         {isLoading && <Loading />}
         <Layout1
           child1={<Stats showsData={showsData} episodesData={episodesData} />}
@@ -64,6 +70,7 @@ function User() {
         />
       </Route>
 
+      {/* Map routes for each Show */}
       {showsData.map((showData) => {
         return (
           <Route exact path={`/shows/${showData.id}`} key={showData.id}>
