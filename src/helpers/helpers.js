@@ -1,14 +1,16 @@
 import { useEffect, useReducer } from "react";
 import { generateUserDocument } from "../firebase/firebaseIndex";
 
-export const arrayDataReducer = (state, item) => {
-  if (state.includes(item)) {
-    let filteredData = state.filter((x) => x !== item);
-    return filteredData;
-  } else {
-    let newData = [...state, item];
-    return newData;
-  }
+export const arrayDataReducer = (state, items) => {
+  let newState = [...state];
+  items.forEach((item) => {
+    if (newState.includes(item)) {
+      newState = state.filter((x) => x !== item);
+    } else {
+      newState.push(item);
+    }
+  });
+  return newState;
 };
 
 export const stringDataReducer = (state, item) => {

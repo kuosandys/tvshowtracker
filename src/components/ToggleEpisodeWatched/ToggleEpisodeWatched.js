@@ -14,7 +14,7 @@ function ToggleEpisodeWatched({ episodeId }) {
   return (
     <WatchedButton
       isWatched={isWatched}
-      onClickHandler={() => setWatchedEpisodes(+episodeId)}
+      onClickHandler={() => setWatchedEpisodes([+episodeId])}
     />
   );
 }

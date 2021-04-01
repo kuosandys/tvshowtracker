@@ -9,7 +9,7 @@ function TrackShowButton(props) {
 
   return (
     <button
-      onClick={() => setTrackedShows(+showId)}
+      onClick={() => setTrackedShows([+showId])}
       className={`rounded-full h-8 w-8 border-2 ${
         trackedShows.includes(showId)
           ? "border-indigo-300 bg-indigo-300"
