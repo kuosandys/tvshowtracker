@@ -16,6 +16,8 @@ function SignIn() {
     try {
       await auth.signInWithEmailAndPassword(email, password);
       setIsSignedIn(true);
+      sessionStorage.removeItem("watchedEpisodes");
+      sessionStorage.removeItem("trackedShows");
     } catch (error) {
       setErrorMessage(error.message);
     }

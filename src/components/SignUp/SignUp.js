@@ -31,7 +31,6 @@ function SignUp() {
         watchedEpisodes,
       };
       generateUserDocument(user, data);
-      setDisplayMessage("You've successfully Signed Up!");
       setIsSignedIn(true);
       sessionStorage.removeItem("watchedEpisodes");
       sessionStorage.removeItem("trackedShows");
