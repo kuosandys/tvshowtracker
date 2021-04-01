@@ -2,7 +2,7 @@ import React from "react";
 
 function Layout2({ children }) {
   return (
-    <div className="w-full h-full min-h-screen bg-white pt-20 flex flex-col items-stretch">
+    <div className="w-full min-h-full bg-white pt-10 flex flex-col items-stretch">
       {children}
     </div>
   );
