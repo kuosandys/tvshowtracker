@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/tvshowtracker/static/css/main.4745a7b8.chunk.css",
-    "main.js": "/tvshowtracker/static/js/main.5690858b.chunk.js",
-    "main.js.map": "/tvshowtracker/static/js/main.5690858b.chunk.js.map",
+    "main.js": "/tvshowtracker/static/js/main.5152c544.chunk.js",
+    "main.js.map": "/tvshowtracker/static/js/main.5152c544.chunk.js.map",
     "runtime-main.js": "/tvshowtracker/static/js/runtime-main.95c07217.js",
     "runtime-main.js.map": "/tvshowtracker/static/js/runtime-main.95c07217.js.map",
     "static/js/2.20aba897.chunk.js": "/tvshowtracker/static/js/2.20aba897.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.95c07217.js",
     "static/js/2.20aba897.chunk.js",
     "static/css/main.4745a7b8.chunk.css",
-    "static/js/main.5690858b.chunk.js"
+    "static/js/main.5152c544.chunk.js"
   ]
 }
