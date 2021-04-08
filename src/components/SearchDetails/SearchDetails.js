@@ -18,7 +18,7 @@ function SearchDetails({ show }) {
 
   return (
     <section className="relative">
-      <div className="mx-10 mb-5 p-2 grid grid-cols-4 border-2 border-gray-500 items-baseline rounded">
+      <div className="mx-0 mb-10 py-2 px-5 grid grid-cols-4 border-2 border-white items-baseline rounded">
         <p>
           <span className="mx-3">Seasons: </span>
           {getSeasons(episodesData).length}

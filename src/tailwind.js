@@ -173,13 +173,13 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        "Roboto",
         "ui-sans-serif",
         "system-ui",
         "-apple-system",
         "BlinkMacSystemFont",
         '"Segoe UI"',
         '"Helvetica Neue"',
+        "Roboto",
         "Arial",
         '"Noto Sans"',
         "sans-serif",

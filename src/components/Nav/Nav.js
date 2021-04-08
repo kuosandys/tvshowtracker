@@ -8,11 +8,14 @@ import PrimaryButton from "../StyleComponents/PrimaryButton";
 function Nav({ children }) {
   const user = useContext(UserContext);
   return (
-    <div className="fixed top-0 left-0 right-0 py-1 flex items-center justify-between bg-indigo-900 text-white z-10">
+    <div className="fixed top-0 left-0 right-0 py-1 flex items-center justify-between bg-white border-b-2 text-gray-800 z-10 shadow-lg">
       <ul className="flex h-12 items-center">
-        <li className="mx-5 font-bold hover:underline">
-          <Link to="/">Home</Link>
-        </li>
+        <Link to="/">
+          <li className="mx-5">
+            <span className="animate-pulse">&#128250; </span>
+            <span className="font-bold hover:underline">WatcherList</span>
+          </li>
+        </Link>
       </ul>
       {children}
       {user ? (

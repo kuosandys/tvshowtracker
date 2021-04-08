@@ -8,11 +8,11 @@ function EpisodesWrapper({ episodesData }) {
 
   const seasons = getSeasons(episodesData);
 
-  const seasonSelectedClass = "font-bold bg-indigo-200";
+  const seasonSelectedClass = "bg-gray-700 text-white";
 
   return (
     <div>
-      <ul className="flex overflow-x-scroll justify-start border-b-2 border-gray-200">
+      <ul className="flex border-b-2 border-gray-200 overflow-x-scroll justify-start h-16 p-1">
         {seasons.map((season) => {
           return (
             <li
@@ -20,7 +20,7 @@ function EpisodesWrapper({ episodesData }) {
               onClick={() => setSeasonSelected(season)}
               className={`bg-white ${
                 season === seasonSelected && seasonSelectedClass
-              } px-3 py-3 flex-shrink-0 cursor-pointer`}
+              } flex m-auto py-2 px-3 flex-shrink-0 cursor-pointer rounded-full`}
             >
               Season {season}
             </li>

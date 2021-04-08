@@ -7,7 +7,7 @@ function ShowCard(props) {
   const { show, children } = props;
 
   return (
-    <div className="flex flex-col items-stretch overflow-hidden h-96 w-56 text-white m-4 rounded bg-gray-800">
+    <div className="flex flex-col items-stretch overflow-hidden h-96 w-56 text-gray-800 m-4 border-2 border-gray-200 bg-white shadow-sm hover:shadow-md">
       <ShowCardLink show={show}>
         <img
           src={show.image?.medium}

@@ -12,12 +12,16 @@ function SearchBar({ handleSubmitSearch }) {
   };
 
   return (
-    <form onSubmit={onFormSubmit} className="flex items-stretch justify-center">
+    <form
+      onSubmit={onFormSubmit}
+      className="flex items-stretch justify-between"
+    >
       <input
         type="text"
         onChange={(e) => setSearchInput(e.target.value)}
-        className="mx-3 px-3 rounded text-gray-900"
+        className="px-3 border-2 rounded text-gray-900"
         ref={inputRef}
+        placeholder="What are you watching?"
       ></input>
       <PrimaryButton type="submit">Search</PrimaryButton>
     </form>

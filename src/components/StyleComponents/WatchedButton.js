@@ -6,14 +6,14 @@ function WatchedButton({ isWatched, onClickHandler }) {
   return (
     <button
       onClick={onClickHandler}
-      className={`h-6 w-6 border-2 rounded-full border-indigo-800 ${
-        isWatched && "bg-indigo-200"
+      className={`h-6 w-6 border-2 rounded-full ${
+        isWatched ? "bg-indigo-200 border-indigo-200" : "border-indigo-500"
       }`}
     >
       {isWatched && (
         <FontAwesomeIcon
           icon={faCheck}
-          className="text-indigo-800 text-lg pb-1.5"
+          className="text-indigo-500 text-lg pb-1.5"
         />
       )}
     </button>

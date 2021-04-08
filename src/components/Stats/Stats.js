@@ -21,12 +21,12 @@ function Stats({ showsData, episodesData }) {
 
   return (
     <section>
-      <div className="flex text-2xl pl-10 justify-center items-center">
+      <div className="flex flex-col text-2xl pl-10 justify-center items-center">
         <h1 className="mx-2">
           {showsData.length > 0 || user ? "Welcome back" : "Hello"},
         </h1>
         {user ? (
-          <h1>{user.displayName}!</h1>
+          <h1>{user.displayName} !</h1>
         ) : (
           <div className="flex text-2xl justify-center items-center">
             {inputEditable ? (
@@ -36,12 +36,12 @@ function Stats({ showsData, episodesData }) {
                 className="bg-transparent ml-2 w-32 overflow-x-scroll"
               />
             ) : (
-              <h1 className="font-medium">{name}</h1>
+              <h1 className="font-medium">{name} !</h1>
             )}
 
             <button
               onClick={() => setInputEditable((prevState) => !prevState)}
-              className="mx-2 px-2 text-sm text-indigo-300"
+              className="mx-2 px-2 text-sm text-indigo-400 hover:text-indigo-500"
             >
               {inputEditable ? (
                 <FontAwesomeIcon icon={faCheck} />
@@ -52,24 +52,24 @@ function Stats({ showsData, episodesData }) {
           </div>
         )}
       </div>
-      <section className="max-w-screen-sm mx-auto grid grid-cols-2 grid-rows-2 grid-flow-col text-center border-2 border-gray-500 rounded mt-5">
-        <div className="flex flex-col border-2 border-gray-500 justify-start py-2">
+      <section className="max-w-screen-sm mx-auto grid grid-cols-2 grid-rows-2 grid-flow-col text-center mt-5">
+        <div className="flex flex-col border-2 border-b-0 border-r-0 border-white justify-start py-2">
           <h3>Shows Tracked</h3>
-          <span className="text-3xl">{showsData.length}</span>
+          <span className="text-2xl">{showsData.length}</span>
         </div>
-        <div className="flex flex-col border-2 border-gray-500 justify-start py-2">
+        <div className="flex flex-col border-2 border-r-0 border-white justify-start py-2">
           <h3>Episodes Watched</h3>
-          <span className="text-3xl">
+          <span className="text-2xl">
             {watchedEpisodes.length} / {episodesData.length}
           </span>
         </div>
-        <div className="flex flex-col border-2 border-gray-500 justify-start py-2">
+        <div className="flex flex-col border-2 border-b-0 border-white justify-start py-2">
           <h3>Top Genres</h3>
           <span className="text-lg">{getTopGenres(showsData).join(", ")}</span>
         </div>
-        <div className="flex flex-col border-2 border-gray-500 justify-start py-2">
+        <div className="flex flex-col border-2 border-white justify-start py-2">
           <h3>Watch Time</h3>
-          <span className="text-3xl">
+          <span className="text-2xl">
             {getWatchTime(episodesData, watchedEpisodes)} mins
           </span>
         </div>

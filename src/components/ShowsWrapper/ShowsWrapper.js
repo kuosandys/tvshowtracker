@@ -5,13 +5,17 @@ import TrackShowButton from "../TrackShowButton/TrackShowButton.js";
 function ShowsWrapper({ showsData }) {
   return (
     <div className="flex flex-wrap justify-center pt-5">
-      {showsData.map((show) => {
-        return (
-          <ShowCard key={show.id} show={show}>
-            <TrackShowButton showId={show.id} />
-          </ShowCard>
-        );
-      })}
+      {showsData.length === 0 ? (
+        <p className="italic">You are not currently tracking any shows.</p>
+      ) : (
+        showsData.map((show) => {
+          return (
+            <ShowCard key={show.id} show={show}>
+              <TrackShowButton showId={show.id} />
+            </ShowCard>
+          );
+        })
+      )}
     </div>
   );
 }

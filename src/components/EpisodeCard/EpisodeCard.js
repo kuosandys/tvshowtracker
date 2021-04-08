@@ -17,13 +17,15 @@ function EpisodeCard(props) {
       <div className="flex justify-between items-center px-5 pt-1">
         <div className="flex items-center flex-grow flex-nowrap">
           <ToggleEpisodeWatched episodeId={episode.id} />
-          <h3 className="ml-6 mr-2 w-24">Episode {episode.number}</h3>
+          <h3 className="ml-6 mr-2 md:w-24 lg:w-24 sm:w-12">
+            Episode {episode.number}
+          </h3>
           <h2 className="font-bold text-lg truncate">{episode.name}</h2>
         </div>
         {isUpcoming && <h3 className="text-sm italic mr-2">Upcoming</h3>}
         <button
           onClick={() => setIsExpanded((prev) => !prev)}
-          className="h-10 w-10"
+          className="h-10 w-10 text-indigo-500"
         >
           {isExpanded ? (
             <FontAwesomeIcon icon={faChevronUp} />

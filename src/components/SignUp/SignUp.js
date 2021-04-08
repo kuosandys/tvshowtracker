@@ -58,8 +58,8 @@ function SignUp() {
   return (
     <Layout2>
       {isSignedIn && <Redirect to="/shows" />}
-      <div className="w-2/6 mx-auto mt-10 flex flex-col items-center bg-black  bg-opacity-80 rounded py-8 px-10 text-white">
-        <h1 className="text-2xl">Sign Up!</h1>
+      <div className="md:w-3/6 lg:w-2/6 sm: w-4/6 mx-auto mt-24 flex flex-col items-center shadow-md bg-indigo-200  bg-opacity-80 rounded py-8 px-10 text-gray-800">
+        <h1 className="text-2xl text-indigo-700">Sign Up!</h1>
         <p className="text-red-400 italic mt-6">{displayMessage}</p>
         <form
           method="POST"
@@ -74,7 +74,7 @@ function SignUp() {
             id="displayName"
             onChange={(event) => onInputChanged(event)}
             value={displayName}
-            className="mb-4 text-black"
+            className="mb-4 text-black rounded pl-2 h-10 mt-1"
           />
           <label htmlFor="email">Email: </label>
           <input
@@ -84,7 +84,7 @@ function SignUp() {
             id="email"
             onChange={(event) => onInputChanged(event)}
             value={email}
-            className="mb-4 text-black"
+            className="mb-4 text-black rounded pl-2 h-10 mt-1"
           />
           <label htmlFor="password">Password: </label>
           <input
@@ -93,15 +93,15 @@ function SignUp() {
             id="password"
             onChange={(event) => onInputChanged(event)}
             value={password}
-            className="text-black"
+            className="text-black rounded pl-2 h-10 mt-1"
           />
           <div className="mx-auto my-8">
             <PrimaryButton type="submit">Sign Up</PrimaryButton>
           </div>
         </form>
-        <p className="italic">
+        <p className="italic text-center">
           Already have an account?{" "}
-          <Link to="/sign-in" className="underline">
+          <Link to="/sign-in" className="underline text-indigo-700">
             Sign In
           </Link>
         </p>
