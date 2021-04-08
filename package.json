@@ -54,5 +54,5 @@
     "postcss-cli": "^8.3.1",
     "tailwindcss": "^2.0.3"
   },
-  "homepage": "https://kuosandys.github.io/tvshowtracker"
+  "homepage": "https://kuosandys.github.io/watcherlist"
 }
