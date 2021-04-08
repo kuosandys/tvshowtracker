@@ -1,4 +1,4 @@
-# TV Show Tracker
+# *WatcherList* TV Shows Tracker
 
 This application allows users to easily search for and track their TV shows and watched episodes. Detailed information about each show (e.g. status, network, country) can be seen from each show's detailed information page. Episodes information can be overviewed as a list, as well as expanded to show a promotional image and episode summary.
 
